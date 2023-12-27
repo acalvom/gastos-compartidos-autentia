@@ -7,8 +7,8 @@ test('renders Home component', async () => {
 
   const form = screen.getByTestId('form')
   const count = screen.getByTestId('count')
-  const add = screen.getByTestId('add')
-  const remove = screen.getByTestId('remove')
+  const add = screen.getByTestId('increment')
+  const remove = screen.getByTestId('decrement')
   expect(form).toBeInTheDocument()
   expect(count).toBeInTheDocument()
   expect(add).toBeInTheDocument()

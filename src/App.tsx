@@ -20,8 +20,8 @@ export const App = () => {
 
       <main className="app-main">
         <h1 data-testid="count">Counter: {counter}</h1>
-        <button data-testid="add" onClick={() => setCounter(counter + 1)}>Increment</button>
-        <button data-testid="remove" onClick={() => setCounter(counter - 1)}>Decrement</button>
+        <button data-testid="increment" onClick={() => setCounter(counter + 1)}>Increment</button>
+        <button data-testid="decrement" onClick={() => setCounter(counter - 1)}>Decrement</button>
 
         <form data-testid="form" onSubmit={handleSubmit}>
           <div>
