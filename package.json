@@ -10,7 +10,8 @@
     "lint:fix": "eslint ./src --ext .ts,.tsx --fix",
     "prepare": "husky install",
     "preview": "vite preview",
-    "test": "vitest"
+    "test": "vitest",
+    "cypress:open": "cypress open"
   },
   "dependencies": {
     "react": "^18.2.0",
@@ -27,8 +28,10 @@
     "@typescript-eslint/eslint-plugin": "^6.14.0",
     "@typescript-eslint/parser": "^6.14.0",
     "@vitejs/plugin-react": "^4.2.1",
+    "cypress": "^12.12.0",
     "eslint": "^8.55.0",
     "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-cypress": "^2.15.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
     "husky": "^8.0.3",
