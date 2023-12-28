@@ -1,27 +1,25 @@
 import { useState } from 'react'
 import Layout from '@/layout/Layout'
-export const App = () => {
-  const [counter, setCounter] = useState(0)
-  const [name, setName] = useState('')
+import useLocalStorage from '@/hooks/useLocalStorage'
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    console.log('Form submitted', name)
-  }
+export const App = () => {
+  const [storedName, setStoredName] = useLocalStorage<string>('name', '')
+  const [storedCounter, setStoredCounter] = useLocalStorage<number>('count', 0)
+  const [name, setName] = useState('')
 
   return (
     <Layout>
-      <h1 data-testid="count">Counter: {counter}</h1>
-      <button data-testid="increment" onClick={() => setCounter(counter + 1)}>
+      <h1 data-testid="count">Counter: {storedCounter}</h1>
+      <button data-testid="increment" onClick={() => setStoredCounter(storedCounter + 1)}>
         Increment
       </button>
-      <button data-testid="decrement" onClick={() => setCounter(counter - 1)}>
+      <button data-testid="decrement" onClick={() => setStoredCounter(storedCounter - 1)}>
         Decrement
       </button>
 
-      <form data-testid="form" onSubmit={handleSubmit}>
+      <form data-testid="form" onSubmit={() => setStoredName(name)}>
         <div>
-          <label htmlFor="name">Name</label>
+          <label htmlFor="name">Name: {storedName}</label>
           <input type="text" id="name" onChange={(e) => setName(e.target.value)} />
         </div>
         <button>Submit</button>
