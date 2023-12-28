@@ -1,34 +1,45 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+export const App = () => {
+  const [counter, setCounter] = useState(0)
+  const [name, setName] = useState('')
 
-function App() {
-  const [count, setCount] = useState(0)
-
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    console.log('Form submitted', name)
+  }
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className="app-container">
+      <header className="app-header">
+        <nav className="navbar">
+          <ul>
+            <li>Home</li>
+          </ul>
+        </nav>
+      </header>
+
+      <main className="app-main">
+        <h1 data-testid="count">Counter: {counter}</h1>
+        <button data-testid="increment" onClick={() => setCounter(counter + 1)}>Increment</button>
+        <button data-testid="decrement" onClick={() => setCounter(counter - 1)}>Decrement</button>
+
+        <form data-testid="form" onSubmit={handleSubmit}>
+          <div>
+            <label htmlFor="name">Name</label>
+            <input
+              type="text"
+              id="name"
+              onChange={(e) => setName(e.target.value)}
+            />
+          </div>
+          <button>Submit</button>
+        </form>
+      </main>
+
+      <footer className="app-footer">
+        <p>&copy; 2023 Gestión de gastos - Autentia.</p>
+      </footer>
+    </div>
   )
 }
 
