@@ -1,0 +1,43 @@
+.app-header {
+  background-color: #353535;
+  color: white;
+  padding: 1rem;
+}
+
+.app-title {
+  font-size: 1.85rem;
+  font-weight: 600;
+}
+
+.app-logo {
+  max-height: 65px;
+}
+
+.app-navbar {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+@media only screen and (max-width: 768px) {
+  .app-header {
+    padding: 0.5rem;
+  }
+
+  .app-logo {
+    max-height: 55px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .app-title {
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+
+  .app-logo {
+    max-height: 45px;
+  }
+}
