@@ -4,7 +4,7 @@ import Main from './Main/Main'
 import Footer from './Footer/Footer'
 
 type LayoutProps = {
-  children: JSX.Element[]
+  children: JSX.Element | JSX.Element[]
 }
 
 export const Layout = ({ children }: LayoutProps) => {
