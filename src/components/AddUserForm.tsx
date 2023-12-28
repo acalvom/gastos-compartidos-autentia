@@ -1,7 +1,8 @@
 import './AddUserForm.css'
 import { useState } from 'react'
 import { User } from '@/models/User'
-import useLocalStorage from '@/hooks/useLocalStorage'
+import { useLocalStorage } from '@/hooks/useLocalStorage'
+import { UserForm } from '@/constants/Home'
 
 export const AddUserForm = () => {
   const [user, setUser] = useState<User>({ firstName: '', lastName: '' })
@@ -11,8 +12,8 @@ export const AddUserForm = () => {
   const resetForm = () => setUser({ firstName: '', lastName: '' })
   const isValidForm = () => {
     const formErrors = {
-      firstName: !user.firstName ? 'Campo obligatorio' : '',
-      lastName: !user.lastName ? 'Campo obligatorio' : '',
+      firstName: !user.firstName ? UserForm.FieldRequired : '',
+      lastName: !user.lastName ? UserForm.FieldRequired : '',
     }
 
     setErrors(formErrors)
@@ -40,7 +41,7 @@ export const AddUserForm = () => {
             className="input"
             type="text"
             id="firstName"
-            placeholder="Nombre"
+            placeholder={UserForm.Name}
             value={user.firstName}
             onChange={handleOnChange}
           />
@@ -51,7 +52,7 @@ export const AddUserForm = () => {
             className="input"
             type="text"
             id="lastName"
-            placeholder="Apellido"
+            placeholder={UserForm.LastName}
             value={user.lastName}
             onChange={handleOnChange}
           />
@@ -59,7 +60,7 @@ export const AddUserForm = () => {
         </div>
       </div>
       <button className="button" type="submit">
-        🫂 Añadir amigo
+        {UserForm.Button}
       </button>
     </form>
   )
