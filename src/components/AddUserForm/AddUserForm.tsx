@@ -1,21 +1,17 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
 import { UserForm } from '@/constants/Home'
 import { UserFormErrors, StoredUser, User } from '@/models'
+import { initalUser, initalUserError } from '@/constants/InitialData'
 import './AddUserForm.css'
 
-interface AddUserFormProps {
+export interface AddUserFormProps {
   storedUsers: StoredUser[]
   setStoredUsers: (users: StoredUser[]) => void
 }
 
-const initalUser = {
-  firstName: '',
-  lastName: '',
-}
-
 export const AddUserForm = ({ storedUsers, setStoredUsers }: AddUserFormProps) => {
   const [user, setUser] = useState<User>(initalUser)
-  const [errors, setErrors] = useState<UserFormErrors>(initalUser)
+  const [errors, setErrors] = useState<UserFormErrors>(initalUserError)
 
   const resetForm = () => setUser(initalUser)
   const isValidForm = () => {

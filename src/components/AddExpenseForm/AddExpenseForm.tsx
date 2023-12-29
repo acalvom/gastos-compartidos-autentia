@@ -2,34 +2,21 @@ import { ChangeEvent, FormEvent, useState } from 'react'
 import { ExpenseForm } from '@/constants/Home'
 import { ExpenseFormErrors, Expense, StoredExpense, StoredUser } from '@/models'
 import './AddExpenseForm.css'
+import { initialExpense, initialExpenseError } from '@/constants/InitialData'
 
-interface AddUserFormProps {
+export interface AddExpenseFormProps {
   storedUsers: StoredUser[]
   storedExpenses: StoredExpense[]
   setStoredExpenses: (expenses: StoredExpense[]) => void
-}
-
-const initialExpense: Expense = {
-  payer: '',
-  amount: 0,
-  description: '',
-  paymentDate: '',
-}
-
-const initialError: ExpenseFormErrors = {
-  payer: '',
-  amount: '',
-  description: '',
-  paymentDate: '',
 }
 
 export const AddExpenseForm = ({
   storedUsers,
   storedExpenses,
   setStoredExpenses,
-}: AddUserFormProps) => {
+}: AddExpenseFormProps) => {
   const [expense, setExpense] = useState<Expense>(initialExpense)
-  const [errors, setErrors] = useState<ExpenseFormErrors>(initialError)
+  const [errors, setErrors] = useState<ExpenseFormErrors>(initialExpenseError)
 
   const resetForm = () => setExpense(initialExpense)
   const isValidForm = () => {
@@ -92,7 +79,7 @@ export const AddExpenseForm = ({
           {errors.description && <span className="error">{errors.description}</span>}
         </label>
       </div>
-      
+
       <div className="input-wrapper">
         <label className="input-label">
           {ExpenseForm.Amount}
