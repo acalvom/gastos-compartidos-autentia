@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom'
 import Layout from '@/layout/Layout'
 import { useLocalStorage } from '@/hooks/useLocalStorage'
 import { StoredExpense } from '@/models/Expense'
-import './Home.css'
 
 export const Home = () => {
   const [storedExpenses] = useLocalStorage<StoredExpense[]>('gastos', [])
