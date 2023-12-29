@@ -8,8 +8,8 @@ export default defineConfig({
   viewportHeight: 942,
   numTestsKeptInMemory: 0,
   retries: {
-    runMode: 1,
-    openMode: 2,
+    runMode: 0,
+    openMode: 0,
   },
   env: {
     appUrl: 'http://localhost:3000',
