@@ -2,13 +2,6 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  width: 50%;
   background-color: #FDC9BC;
   margin: 0 auto;
-}
-
-@media only screen and (max-width: 768px) {
-  .app-container {
-    width: 100%;
-  }
 }

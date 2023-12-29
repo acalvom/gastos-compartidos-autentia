@@ -1,7 +1,7 @@
 import './Main.css'
 
 type MainProps = {
-  children: JSX.Element[]
+  children: JSX.Element | JSX.Element[]
 }
 
 export const Main = ({ children }: MainProps) => {
