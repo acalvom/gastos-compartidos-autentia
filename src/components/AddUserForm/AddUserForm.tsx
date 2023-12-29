@@ -1,13 +1,16 @@
 import './AddUserForm.css'
 import { useState } from 'react'
-import { User } from '@/models/User'
-import { useLocalStorage } from '@/hooks/useLocalStorage'
+import { StoredUser, User } from '@/models/User'
 import { UserForm } from '@/constants/Home'
 
-export const AddUserForm = () => {
+interface AddUserFormProps {
+  storedUsers: StoredUser[]
+  setStoredUsers: (users: StoredUser[]) => void
+}
+
+export const AddUserForm = ({ storedUsers, setStoredUsers }: AddUserFormProps) => {
   const [user, setUser] = useState<User>({ firstName: '', lastName: '' })
   const [errors, setErrors] = useState<User>({ firstName: '', lastName: '' })
-  const [storedUsers, setStoredUsers] = useLocalStorage<User[]>('amigos', [])
 
   const resetForm = () => setUser({ firstName: '', lastName: '' })
   const isValidForm = () => {
@@ -29,14 +32,15 @@ export const AddUserForm = () => {
     e.preventDefault()
     if (!isValidForm()) return
 
-    setStoredUsers([...storedUsers, user])
+    setStoredUsers([...storedUsers, { ...user, id: user.firstName + user.lastName }])
     resetForm()
   }
 
+  // TODO: Split this into a separate components
   return (
-    <form className="friend-form" onSubmit={handleOnSubmit} data-testid='add-user-form'>
+    <form className="friend-form" onSubmit={handleOnSubmit} data-testid="add-user-form">
       <div className="input-container">
-        <div className="input-wrapper" data-testid='first-name-wrapper'>
+        <div className="input-wrapper" data-testid="first-name-wrapper">
           <input
             className="input"
             type="text"
@@ -47,7 +51,7 @@ export const AddUserForm = () => {
           />
           {errors.firstName && <span className="error">{errors.firstName}</span>}
         </div>
-        <div className="input-wrapper" data-testid='last-name-wrapper'>
+        <div className="input-wrapper" data-testid="last-name-wrapper">
           <input
             className="input"
             type="text"
@@ -59,11 +63,9 @@ export const AddUserForm = () => {
           {errors.lastName && <span className="error">{errors.lastName}</span>}
         </div>
       </div>
-      <button className="button" type="submit" data-testid='add-user-button'>
+      <button className="button" type="submit" data-testid="add-user-button">
         {UserForm.Button}
       </button>
     </form>
   )
 }
-
-export default AddUserForm
