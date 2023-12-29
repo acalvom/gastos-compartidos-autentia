@@ -1,32 +1,64 @@
 import { ExpenseForm } from '@/constants/Home'
-import { Expense } from '@/models/Expense'
+import { Expense, StoredExpense } from '@/models/Expense'
 import { StoredUser } from '@/models/User'
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, FormEvent, useState } from 'react'
+import { ExpenseFormErrors } from '@/models/Errors'
+import './AddExpenseForm.css'
 
 interface AddUserFormProps {
   storedUsers: StoredUser[]
+  storedExpenses: StoredExpense[]
+  setStoredExpenses: (expenses: StoredExpense[]) => void
 }
 
-import './AddExpenseForm.css'
 const initialExpense: Expense = {
-  payer: { id: '', firstName: '', lastName: '' },
+  payer: '',
   amount: 0,
   description: '',
   paymentDate: '',
 }
+const initialError: ExpenseFormErrors = {
+  payer: '',
+  amount: '',
+  description: '',
+  paymentDate: '',
+}
 
-export const AddExpenseForm = ({ storedUsers }: AddUserFormProps) => {
-  //   const [errors, setErrors] = useState<Expense>(initialExpense)
+export const AddExpenseForm = ({
+  storedUsers,
+  storedExpenses,
+  setStoredExpenses,
+}: AddUserFormProps) => {
+  const [errors, setErrors] = useState<ExpenseFormErrors>(initialError)
   const [expense, setExpense] = useState<Expense>(initialExpense)
 
-  const handleOnSubmit = () => {
-    console.log('handleOnSubmit')
+  const resetForm = () => setExpense(initialExpense)
+  const isValidForm = () => {
+    const formErrors: ExpenseFormErrors = {
+      payer: !expense.payer ? ExpenseForm.FieldRequired : '',
+      amount: !expense.amount ? ExpenseForm.FieldRequired : '',
+      description: !expense.description ? ExpenseForm.FieldRequired : '',
+      paymentDate: !expense.paymentDate ? ExpenseForm.FieldRequired : '',
+    }
+
+    setErrors(formErrors)
+    return Object.values(formErrors).every((error) => !error)
+  }
+
+  const handleOnSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    if (!isValidForm()) return
+
+    setStoredExpenses([
+      ...storedExpenses,
+      { ...expense, id: expense.payer + expense.paymentDate },
+    ])
+    resetForm()
   }
 
   const handleOnChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    // setErrors({ ...errors, [e.target.id]: '' })
+    setErrors({ ...errors, [e.target.id]: '' })
     setExpense({ ...expense, [e.target.id]: e.target.value })
-    console.log(expense)
   }
 
   return (
@@ -36,7 +68,7 @@ export const AddExpenseForm = ({ storedUsers }: AddUserFormProps) => {
           {ExpenseForm.Payer}
           <select
             className="input input-expense"
-            value={expense.payer.firstName}
+            value={expense.payer}
             onChange={handleOnChange}
             id="payer"
           >
@@ -49,6 +81,7 @@ export const AddExpenseForm = ({ storedUsers }: AddUserFormProps) => {
               </option>
             ))}
           </select>
+          {errors.payer && <span className="error">{errors.payer}</span>}
         </label>
 
         <label className="input-label">
@@ -60,6 +93,7 @@ export const AddExpenseForm = ({ storedUsers }: AddUserFormProps) => {
             value={expense.description}
             onChange={handleOnChange}
           />
+          {errors.description && <span className="error">{errors.description}</span>}
         </label>
       </div>
       <div className="input-wrapper">
@@ -72,6 +106,7 @@ export const AddExpenseForm = ({ storedUsers }: AddUserFormProps) => {
             value={expense.amount}
             onChange={handleOnChange}
           />
+          {errors.amount && <span className="error">{errors.amount}</span>}
         </label>
 
         <label className="input-label">
@@ -84,6 +119,7 @@ export const AddExpenseForm = ({ storedUsers }: AddUserFormProps) => {
             value={expense.paymentDate}
             onChange={handleOnChange}
           />
+          {errors.paymentDate && <span className="error">{errors.paymentDate}</span>}
         </label>
       </div>
 
