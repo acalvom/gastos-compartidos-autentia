@@ -17,6 +17,7 @@ const initialExpense: Expense = {
   description: '',
   paymentDate: '',
 }
+
 const initialError: ExpenseFormErrors = {
   payer: '',
   amount: '',
@@ -29,8 +30,8 @@ export const AddExpenseForm = ({
   storedExpenses,
   setStoredExpenses,
 }: AddUserFormProps) => {
-  const [errors, setErrors] = useState<ExpenseFormErrors>(initialError)
   const [expense, setExpense] = useState<Expense>(initialExpense)
+  const [errors, setErrors] = useState<ExpenseFormErrors>(initialError)
 
   const resetForm = () => setExpense(initialExpense)
   const isValidForm = () => {
@@ -45,20 +46,17 @@ export const AddExpenseForm = ({
     return Object.values(formErrors).every((error) => !error)
   }
 
+  const handleOnChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    setErrors({ ...errors, [e.target.id]: '' })
+    setExpense({ ...expense, [e.target.id]: e.target.value })
+  }
+
   const handleOnSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (!isValidForm()) return
 
-    setStoredExpenses([
-      ...storedExpenses,
-      { ...expense, id: expense.payer + expense.paymentDate },
-    ])
+    setStoredExpenses([...storedExpenses, { ...expense, id: expense.payer + expense.paymentDate }])
     resetForm()
-  }
-
-  const handleOnChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    setErrors({ ...errors, [e.target.id]: '' })
-    setExpense({ ...expense, [e.target.id]: e.target.value })
   }
 
   return (

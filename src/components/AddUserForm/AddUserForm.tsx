@@ -1,8 +1,8 @@
-import './AddUserForm.css'
-import { useState } from 'react'
+import { ChangeEvent, FormEvent, useState } from 'react'
 import { StoredUser, User } from '@/models/User'
 import { UserForm } from '@/constants/Home'
 import { UserFormErrors } from '@/models/Errors'
+import './AddUserForm.css'
 
 interface AddUserFormProps {
   storedUsers: StoredUser[]
@@ -20,7 +20,7 @@ export const AddUserForm = ({ storedUsers, setStoredUsers }: AddUserFormProps) =
 
   const resetForm = () => setUser(initalUser)
   const isValidForm = () => {
-    const formErrors = {
+    const formErrors: UserFormErrors = {
       firstName: !user.firstName ? UserForm.FieldRequired : '',
       lastName: !user.lastName ? UserForm.FieldRequired : '',
     }
@@ -29,12 +29,12 @@ export const AddUserForm = ({ storedUsers, setStoredUsers }: AddUserFormProps) =
     return Object.values(formErrors).every((error) => !error)
   }
 
-  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
     setErrors({ ...errors, [e.target.id]: '' })
     setUser({ ...user, [e.target.id]: e.target.value })
   }
 
-  const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleOnSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (!isValidForm()) return
 
