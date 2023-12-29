@@ -11,7 +11,7 @@
   background-color: whitesmoke;
 }
 
-.input-wrapper {
+.input-grid-wrapper {
   display: flex;
   flex-direction: row;
   gap: 30px;
@@ -26,11 +26,10 @@
   gap: 5px;
 }
 
-.input-expense {
-  transition: none;
+.input-expense.input {
   background-color: #55555513;
 }
-.input-expense:focus {
+.input-expense.input:focus {
   width: 200px;
   border: 2px solid #555;
 }
@@ -45,7 +44,7 @@
     width: 100%;
   }
 
-  .input-wrapper {
+  .input-grid-wrapper {
     width: 100%;
     flex-direction: column;
   }

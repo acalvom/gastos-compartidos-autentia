@@ -1,8 +1,8 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
 import { ExpenseForm } from '@/constants/Home'
 import { ExpenseFormErrors, Expense, StoredExpense, StoredUser } from '@/models'
-import './AddExpenseForm.css'
 import { initialExpense, initialExpenseError } from '@/constants/InitialData'
+import './AddExpenseForm.css'
 
 export interface AddExpenseFormProps {
   storedUsers: StoredUser[]
@@ -46,7 +46,7 @@ export const AddExpenseForm = ({
 
   return (
     <form className="expense-form" onSubmit={handleOnSubmit} data-testid="add-expense-form">
-      <div className="input-wrapper">
+      <div className="input-grid-wrapper">
         <label className="input-label">
           {ExpenseForm.Payer}
           <select
@@ -82,7 +82,7 @@ export const AddExpenseForm = ({
         </label>
       </div>
 
-      <div className="input-wrapper">
+      <div className="input-grid-wrapper">
         <label className="input-label">
           {ExpenseForm.Amount}
           <input
