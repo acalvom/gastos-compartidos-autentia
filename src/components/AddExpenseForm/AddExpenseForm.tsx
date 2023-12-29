@@ -54,6 +54,7 @@ export const AddExpenseForm = ({
             value={expense.payer}
             onChange={handleOnChange}
             id="payer"
+            data-testid="payer-input"
           >
             <option value="" disabled hidden>
               {ExpenseForm.SelectPayer}
@@ -75,6 +76,7 @@ export const AddExpenseForm = ({
             id="description"
             value={expense.description}
             onChange={handleOnChange}
+            data-testid="description-input"
           />
           {errors.description && <span className="error">{errors.description}</span>}
         </label>
@@ -89,6 +91,7 @@ export const AddExpenseForm = ({
             id="amount"
             value={expense.amount}
             onChange={handleOnChange}
+            data-testid="amount-input"
           />
           {errors.amount && <span className="error">{errors.amount}</span>}
         </label>
@@ -102,6 +105,7 @@ export const AddExpenseForm = ({
             placeholder={ExpenseForm.PaymentDate}
             value={expense.paymentDate}
             onChange={handleOnChange}
+            data-testid="payment-date-input"
           />
           {errors.paymentDate && <span className="error">{errors.paymentDate}</span>}
         </label>
