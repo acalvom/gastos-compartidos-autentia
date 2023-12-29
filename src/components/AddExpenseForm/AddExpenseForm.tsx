@@ -1,8 +1,6 @@
-import { ExpenseForm } from '@/constants/Home'
-import { Expense, StoredExpense } from '@/models/Expense'
-import { StoredUser } from '@/models/User'
 import { ChangeEvent, FormEvent, useState } from 'react'
-import { ExpenseFormErrors } from '@/models/Errors'
+import { ExpenseForm } from '@/constants/Home'
+import { ExpenseFormErrors, Expense, StoredExpense, StoredUser } from '@/models'
 import './AddExpenseForm.css'
 
 interface AddUserFormProps {

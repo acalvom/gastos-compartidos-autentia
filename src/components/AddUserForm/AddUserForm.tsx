@@ -1,7 +1,6 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
-import { StoredUser, User } from '@/models/User'
 import { UserForm } from '@/constants/Home'
-import { UserFormErrors } from '@/models/Errors'
+import { UserFormErrors, StoredUser, User } from '@/models'
 import './AddUserForm.css'
 
 interface AddUserFormProps {
