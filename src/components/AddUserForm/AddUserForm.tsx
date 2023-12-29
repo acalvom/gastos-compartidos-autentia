@@ -1,17 +1,21 @@
-import './AddUserForm.css'
-import { useState } from 'react'
-import { User } from '@/models/User'
-import { useLocalStorage } from '@/hooks/useLocalStorage'
+import { ChangeEvent, FormEvent, useState } from 'react'
 import { UserForm } from '@/constants/Home'
+import { UserFormErrors, StoredUser, User } from '@/models'
+import { initalUser, initalUserError } from '@/constants/InitialData'
+import './AddUserForm.css'
 
-export const AddUserForm = () => {
-  const [user, setUser] = useState<User>({ firstName: '', lastName: '' })
-  const [errors, setErrors] = useState<User>({ firstName: '', lastName: '' })
-  const [storedUsers, setStoredUsers] = useLocalStorage<User[]>('amigos', [])
+export interface AddUserFormProps {
+  storedUsers: StoredUser[]
+  setStoredUsers: (users: StoredUser[]) => void
+}
 
-  const resetForm = () => setUser({ firstName: '', lastName: '' })
+export const AddUserForm = ({ storedUsers, setStoredUsers }: AddUserFormProps) => {
+  const [user, setUser] = useState<User>(initalUser)
+  const [errors, setErrors] = useState<UserFormErrors>(initalUserError)
+
+  const resetForm = () => setUser(initalUser)
   const isValidForm = () => {
-    const formErrors = {
+    const formErrors: UserFormErrors = {
       firstName: !user.firstName ? UserForm.FieldRequired : '',
       lastName: !user.lastName ? UserForm.FieldRequired : '',
     }
@@ -20,23 +24,23 @@ export const AddUserForm = () => {
     return Object.values(formErrors).every((error) => !error)
   }
 
-  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
     setErrors({ ...errors, [e.target.id]: '' })
     setUser({ ...user, [e.target.id]: e.target.value })
   }
 
-  const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleOnSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (!isValidForm()) return
 
-    setStoredUsers([...storedUsers, user])
+    setStoredUsers([...storedUsers, { ...user, id: user.firstName + user.lastName }])
     resetForm()
   }
 
   return (
-    <form className="friend-form" onSubmit={handleOnSubmit} data-testid='add-user-form'>
+    <form className="friend-form" onSubmit={handleOnSubmit} data-testid="add-user-form">
       <div className="input-container">
-        <div className="input-wrapper" data-testid='first-name-wrapper'>
+        <div className="input-wrapper" data-testid="first-name-wrapper">
           <input
             className="input"
             type="text"
@@ -47,7 +51,8 @@ export const AddUserForm = () => {
           />
           {errors.firstName && <span className="error">{errors.firstName}</span>}
         </div>
-        <div className="input-wrapper" data-testid='last-name-wrapper'>
+
+        <div className="input-wrapper" data-testid="last-name-wrapper">
           <input
             className="input"
             type="text"
@@ -59,11 +64,9 @@ export const AddUserForm = () => {
           {errors.lastName && <span className="error">{errors.lastName}</span>}
         </div>
       </div>
-      <button className="button" type="submit" data-testid='add-user-button'>
+      <button className="button" type="submit" data-testid="add-user-button">
         {UserForm.Button}
       </button>
     </form>
   )
 }
-
-export default AddUserForm
