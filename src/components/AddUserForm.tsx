@@ -34,9 +34,9 @@ export const AddUserForm = () => {
   }
 
   return (
-    <form className="friend-form" onSubmit={handleOnSubmit}>
+    <form className="friend-form" onSubmit={handleOnSubmit} data-testid='add-user-form'>
       <div className="input-container">
-        <div className="input-wrapper">
+        <div className="input-wrapper" data-testid='first-name-wrapper'>
           <input
             className="input"
             type="text"
@@ -47,7 +47,7 @@ export const AddUserForm = () => {
           />
           {errors.firstName && <span className="error">{errors.firstName}</span>}
         </div>
-        <div className="input-wrapper">
+        <div className="input-wrapper" data-testid='last-name-wrapper'>
           <input
             className="input"
             type="text"
@@ -56,10 +56,10 @@ export const AddUserForm = () => {
             value={user.lastName}
             onChange={handleOnChange}
           />
-          {errors.lastName && <div className="error">{errors.lastName}</div>}
+          {errors.lastName && <span className="error">{errors.lastName}</span>}
         </div>
       </div>
-      <button className="button" type="submit">
+      <button className="button" type="submit" data-testid='add-user-button'>
         {UserForm.Button}
       </button>
     </form>
