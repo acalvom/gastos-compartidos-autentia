@@ -41,7 +41,6 @@ export const AddUserForm = ({ storedUsers, setStoredUsers }: AddUserFormProps) =
     resetForm()
   }
 
-  // TODO: Split this into a separate components
   return (
     <form className="friend-form" onSubmit={handleOnSubmit} data-testid="add-user-form">
       <div className="input-container">
@@ -56,6 +55,7 @@ export const AddUserForm = ({ storedUsers, setStoredUsers }: AddUserFormProps) =
           />
           {errors.firstName && <span className="error">{errors.firstName}</span>}
         </div>
+
         <div className="input-wrapper" data-testid="last-name-wrapper">
           <input
             className="input"

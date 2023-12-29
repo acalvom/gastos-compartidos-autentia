@@ -92,6 +92,7 @@ export const AddExpenseForm = ({
           {errors.description && <span className="error">{errors.description}</span>}
         </label>
       </div>
+      
       <div className="input-wrapper">
         <label className="input-label">
           {ExpenseForm.Amount}
