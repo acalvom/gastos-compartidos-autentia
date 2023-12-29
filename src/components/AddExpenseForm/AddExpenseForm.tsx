@@ -1,5 +1,5 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
-import { ExpenseForm } from '@/constants/Home'
+import { Commons, ExpenseForm } from '@/constants/Forms'
 import { ExpenseFormErrors, Expense, StoredExpense, StoredUser } from '@/models'
 import { initialExpense, initialExpenseError } from '@/constants/InitialData'
 import './AddExpenseForm.css'
@@ -21,10 +21,10 @@ export const AddExpenseForm = ({
   const resetForm = () => setExpense(initialExpense)
   const isValidForm = () => {
     const formErrors: ExpenseFormErrors = {
-      payer: !expense.payer ? ExpenseForm.FieldRequired : '',
-      amount: !expense.amount ? ExpenseForm.FieldRequired : '',
-      description: !expense.description ? ExpenseForm.FieldRequired : '',
-      paymentDate: !expense.paymentDate ? ExpenseForm.FieldRequired : '',
+      payer: !expense.payer ? Commons.FieldRequired : '',
+      amount: !expense.amount ? Commons.FieldRequired : '',
+      description: !expense.description ? Commons.FieldRequired : '',
+      paymentDate: !expense.paymentDate ? Commons.FieldRequired : '',
     }
 
     setErrors(formErrors)

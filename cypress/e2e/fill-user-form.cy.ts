@@ -1,4 +1,4 @@
-import { UserForm } from '../../src/constants/Home'
+import { Commons, UserForm } from '../../src/constants/Forms'
 
 describe('"Add user form" workflow', () => {
   beforeEach(() => {
@@ -36,6 +36,6 @@ describe('"Add user form" workflow', () => {
     cy.getByTestId('add-user-button').click()
     cy.get('@firstNameInput').should('have.value', 'Megan')
     cy.get('@lastNameInput').should('be.empty')
-    cy.getByTestId('last-name-wrapper').find('span').should('have.text', UserForm.FieldRequired)
+    cy.getByTestId('last-name-wrapper').find('span').should('have.text', Commons.FieldRequired)
   })
 })

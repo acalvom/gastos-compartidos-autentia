@@ -1,5 +1,7 @@
+import { Link } from 'react-router-dom'
 import { AddExpenseForm } from '@/components/AddExpenseForm/AddExpenseForm'
 import { AddUserForm } from '@/components/AddUserForm/AddUserForm'
+import { Commons } from '@/constants/Forms'
 import useLocalStorage from '@/hooks/useLocalStorage'
 import Layout from '@/layout/Layout'
 import { StoredUser, StoredExpense } from '@/models'
@@ -16,7 +18,9 @@ export const Create = () => {
         storedExpenses={storedExpenses}
         setStoredExpenses={setStoredExpenses}
       />
+      <Link to="/">
+        <button className="button">{Commons.BackButton}</button>
+      </Link>
     </Layout>
   )
 }
-

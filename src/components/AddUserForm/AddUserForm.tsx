@@ -1,5 +1,5 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
-import { UserForm } from '@/constants/Home'
+import { Commons, UserForm } from '@/constants/Forms'
 import { UserFormErrors, StoredUser, User } from '@/models'
 import { initalUser, initalUserError } from '@/constants/InitialData'
 import './AddUserForm.css'
@@ -16,8 +16,8 @@ export const AddUserForm = ({ storedUsers, setStoredUsers }: AddUserFormProps) =
   const resetForm = () => setUser(initalUser)
   const isValidForm = () => {
     const formErrors: UserFormErrors = {
-      firstName: !user.firstName ? UserForm.FieldRequired : '',
-      lastName: !user.lastName ? UserForm.FieldRequired : '',
+      firstName: !user.firstName ? Commons.FieldRequired : '',
+      lastName: !user.lastName ? Commons.FieldRequired : '',
     }
 
     setErrors(formErrors)
