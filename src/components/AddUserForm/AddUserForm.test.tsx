@@ -1,11 +1,21 @@
 import { render, screen } from '@testing-library/react'
 import { expect, test } from 'vitest'
 
-import { AddUserForm } from './AddUserForm'
+import { AddUserForm, AddUserFormProps } from './AddUserForm'
 import { UserForm } from '@/constants/Home'
 
 test('renders AddUserForm component', async () => {
-  render(<AddUserForm />)
+  const initalForm: AddUserFormProps = {
+    storedUsers: [],
+    setStoredUsers: () => {},
+  }
+
+  render(
+    <AddUserForm
+      storedUsers={initalForm.storedUsers}
+      setStoredUsers={initalForm.setStoredUsers}
+    />
+  )
 
   expect(screen.getByTestId('add-user-form')).toBeInTheDocument()
   const firstNameInput = screen.getByTestId('first-name-wrapper').firstChild
@@ -15,7 +25,7 @@ test('renders AddUserForm component', async () => {
   expect(firstNameInput).toHaveAttribute('placeholder', UserForm.Name)
   expect(firstNameInput).toHaveValue('')
 
-  const lastNameInput= screen.getByTestId('last-name-wrapper').firstChild
+  const lastNameInput = screen.getByTestId('last-name-wrapper').firstChild
   expect(lastNameInput).toBeInTheDocument()
   expect(lastNameInput).toHaveClass('input')
   expect(lastNameInput).toHaveAttribute('type', 'text')
