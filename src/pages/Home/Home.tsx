@@ -1,21 +1,22 @@
-import './Home.css'
+import { Link } from 'react-router-dom'
 import Layout from '@/layout/Layout'
-import { AddUserForm } from '@/components/AddUserForm/AddUserForm'
-import { AddExpenseForm } from '@/components/AddExpenseForm/AddExpenseForm'
 import { useLocalStorage } from '@/hooks/useLocalStorage'
-import { StoredUser } from '@/models/User'
 import { StoredExpense } from '@/models/Expense'
+import './Home.css'
 
 export const Home = () => {
-  const [storedUsers, setStoredUsers] = useLocalStorage<StoredUser[]>('amigos', [])
-  const [storedExpenses, setStoredExpenses] = useLocalStorage<StoredExpense[]>('gastos', [])
+  const [storedExpenses] = useLocalStorage<StoredExpense[]>('gastos', [])
 
   return (
     <Layout>
-      <AddUserForm storedUsers={storedUsers} setStoredUsers={setStoredUsers} />
-      <AddExpenseForm storedUsers={storedUsers} storedExpenses={storedExpenses} setStoredExpenses={setStoredExpenses} />
+      <Link to="/create">
+        <button>Create</button>
+      </Link>
+      <ul>
+        {storedExpenses.map((expese) => (
+          <li key={expese.id}>{expese.description}</li>
+        ))}
+      </ul>
     </Layout>
   )
 }
-
-export default Home
