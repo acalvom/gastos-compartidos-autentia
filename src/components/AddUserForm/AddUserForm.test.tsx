@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import { expect, test } from 'vitest'
 
-import { AddUserForm } from '@/components/AddUserForm'
+import { AddUserForm } from './AddUserForm'
 import { UserForm } from '@/constants/Home'
 
 test('renders AddUserForm component', async () => {
