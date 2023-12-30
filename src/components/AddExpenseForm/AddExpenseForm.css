@@ -2,13 +2,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px 40px;
+  padding: 20px 30px;
   gap: 20px;
   border: 2px solid #555;
   margin: 20px auto;
-  width: 560px;
+  width: min-content;
   border-radius: 8px;
-  background-color: whitesmoke;
+  background-color: #f0f0f0;
 }
 
 .input-grid-wrapper {
@@ -28,28 +28,30 @@
 
 .input-expense.input {
   background-color: #55555513;
-}
-.input-expense.input:focus {
-  width: 200px;
-  border: 2px solid #555;
+  min-width: 240px;
+  width: 100%;
 }
 
-@media only screen and (max-width: 480px) {
+.input-expense.input:focus {
+  width: 100%;
+}
+
+@media only screen and (max-width: 600px) {
   .expense-form {
+    width: 90%;
     flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    padding: inherit;
-    flex-direction: column;
-    width: 100%;
   }
 
   .input-grid-wrapper {
     width: 100%;
     flex-direction: column;
   }
+}
 
-  .input-expense:focus {
+@media only screen and (max-width: 492px) {
+  .expense-form {
+    gap: 10px;
+    padding: inherit;
     width: 100%;
   }
 }
