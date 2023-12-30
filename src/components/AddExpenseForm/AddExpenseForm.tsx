@@ -100,7 +100,7 @@ export const AddExpenseForm = ({
           {ExpenseForm.PaymentDate}
           <input
             className="input input-expense"
-            type="date"
+            type="datetime-local"
             id="paymentDate"
             placeholder={ExpenseForm.PaymentDate}
             value={expense.paymentDate}
