@@ -4,10 +4,13 @@ import { AddItem } from '@/constants'
 import { useLocalStorage } from '@/hooks/useLocalStorage'
 import { StoredExpense } from '@/models/Expense'
 import { ExpenseCard } from '@/components/ExpenseCard/ExpenseCard'
+import { sortExpenses } from '@/utils/sortExpenses'
 import './Home.css'
 
 export const Home = () => {
   const [storedExpenses] = useLocalStorage<StoredExpense[]>('gastos', [])
+  const sortedExpenses = sortExpenses(storedExpenses)
+
 
   return (
     <Layout>
@@ -17,7 +20,7 @@ export const Home = () => {
         </Link>
       </div>
       <div className="home-wrapper">
-        {storedExpenses.map((expese) => (
+        {sortedExpenses.map((expese) => (
           <ExpenseCard key={expese.id} expense={expese} />
         ))}
       </div>
