@@ -1,4 +1,4 @@
-import { ExpenseForm } from '../../src/constants/Forms'
+import { ExpenseForm } from '../../src/constants'
 
 describe('"Add expense form" workflow', () => {
   beforeEach(() => {

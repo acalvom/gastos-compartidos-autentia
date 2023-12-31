@@ -14,12 +14,12 @@ export const Home = () => {
 
   return (
     <Layout>
-      <div className="home-button">
+      <div className="home-button" data-testid='add-home-button'>
         <Link to="/create" className="button">
           {AddItem}
         </Link>
       </div>
-      <div className="home-wrapper">
+      <div className="home-wrapper" data-testid="expenses-list">
         {sortedExpenses.map((expese) => (
           <ExpenseCard key={expese.id} expense={expese} />
         ))}
