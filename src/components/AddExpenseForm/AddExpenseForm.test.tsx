@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react'
 import { expect, test } from 'vitest'
 
 import { AddExpenseForm, AddExpenseFormProps } from './AddExpenseForm'
-import { ExpenseForm } from '@/constants/Home'
+import { ExpenseForm } from '@/constants'
 
 test('renders AddUserForm component', async () => {
   const initalForm: AddExpenseFormProps = {

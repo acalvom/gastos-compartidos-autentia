@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react'
 import { expect, test } from 'vitest'
 
 import { AddUserForm, AddUserFormProps } from './AddUserForm'
-import { UserForm } from '@/constants/Home'
+import { UserForm } from '@/constants'
 
 test('renders AddUserForm component', async () => {
   const initalForm: AddUserFormProps = {

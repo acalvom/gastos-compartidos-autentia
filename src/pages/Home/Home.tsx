@@ -1,21 +1,29 @@
-import './Home.css'
-import Layout from '@/layout/Layout'
-import { AddUserForm } from '@/components/AddUserForm/AddUserForm'
-import { AddExpenseForm } from '@/components/AddExpenseForm/AddExpenseForm'
+import { Link } from 'react-router-dom'
+import { Layout } from '@/layout/Layout'
+import { AddItem } from '@/constants'
 import { useLocalStorage } from '@/hooks/useLocalStorage'
-import { StoredUser } from '@/models/User'
 import { StoredExpense } from '@/models/Expense'
+import { ExpenseCard } from '@/components/ExpenseCard/ExpenseCard'
+import { sortExpenses } from '@/utils/sortExpenses'
+import './Home.css'
 
 export const Home = () => {
-  const [storedUsers, setStoredUsers] = useLocalStorage<StoredUser[]>('amigos', [])
-  const [storedExpenses, setStoredExpenses] = useLocalStorage<StoredExpense[]>('gastos', [])
+  const [storedExpenses] = useLocalStorage<StoredExpense[]>('gastos', [])
+  const sortedExpenses = sortExpenses(storedExpenses)
+
 
   return (
     <Layout>
-      <AddUserForm storedUsers={storedUsers} setStoredUsers={setStoredUsers} />
-      <AddExpenseForm storedUsers={storedUsers} storedExpenses={storedExpenses} setStoredExpenses={setStoredExpenses} />
+      <div className="home-button" data-testid='add-home-button'>
+        <Link to="/create" className="button">
+          {AddItem}
+        </Link>
+      </div>
+      <div className="home-wrapper" data-testid="expenses-list">
+        {sortedExpenses.map((expese) => (
+          <ExpenseCard key={expese.id} expense={expese} />
+        ))}
+      </div>
     </Layout>
   )
 }
-
-export default Home

@@ -1,8 +1,8 @@
-import { ExpenseForm } from '../../src/constants/Home'
+import { ExpenseForm } from '../../src/constants'
 
 describe('"Add expense form" workflow', () => {
   beforeEach(() => {
-    cy.visit(`${Cypress.env('appUrl')}`)
+    cy.visit(`${Cypress.env('appUrl')}/create`)
   })
 
   it('Render the empty form', () => {
@@ -47,12 +47,12 @@ describe('"Add expense form" workflow', () => {
     cy.getByTestId('payer-input').as('payerInput').select('JohnDoe')
     cy.getByTestId('description-input').as('descriptionInput').type('Dinner')
     cy.getByTestId('amount-input').as('amountInput').type('7.5')
-    cy.getByTestId('payment-date-input').as('paymentDateInput').type('2024-01-01')
+    cy.getByTestId('payment-date-input').as('paymentDateInput').type('2024-01-01T00:00')
 
     cy.get('@payerInput').and('contain.text', 'John Doe')
     cy.get('@descriptionInput').and('have.value', 'Dinner')
     cy.get('@amountInput').and('have.value', '07.5')
-    cy.get('@paymentDateInput').and('have.value', '2024-01-01')
+    cy.get('@paymentDateInput').and('have.value', '2024-01-01T00:00')
     cy.getByTestId('add-expense-button').click()
 
     cy.get('@payerInput')

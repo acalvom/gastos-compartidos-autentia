@@ -1,8 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
-import { ExpenseForm } from '@/constants/Home'
+import { Commons, ExpenseForm, initialExpense, initialExpenseError } from '@/constants'
 import { ExpenseFormErrors, Expense, StoredExpense, StoredUser } from '@/models'
 import './AddExpenseForm.css'
-import { initialExpense, initialExpenseError } from '@/constants/InitialData'
 
 export interface AddExpenseFormProps {
   storedUsers: StoredUser[]
@@ -21,10 +20,10 @@ export const AddExpenseForm = ({
   const resetForm = () => setExpense(initialExpense)
   const isValidForm = () => {
     const formErrors: ExpenseFormErrors = {
-      payer: !expense.payer ? ExpenseForm.FieldRequired : '',
-      amount: !expense.amount ? ExpenseForm.FieldRequired : '',
-      description: !expense.description ? ExpenseForm.FieldRequired : '',
-      paymentDate: !expense.paymentDate ? ExpenseForm.FieldRequired : '',
+      payer: !expense.payer ? Commons.FieldRequired : '',
+      amount: !expense.amount ? Commons.FieldRequired : '',
+      description: !expense.description ? Commons.FieldRequired : '',
+      paymentDate: !expense.paymentDate ? Commons.FieldRequired : '',
     }
 
     setErrors(formErrors)
@@ -46,7 +45,7 @@ export const AddExpenseForm = ({
 
   return (
     <form className="expense-form" onSubmit={handleOnSubmit} data-testid="add-expense-form">
-      <div className="input-wrapper">
+      <div className="input-grid-wrapper">
         <label className="input-label">
           {ExpenseForm.Payer}
           <select
@@ -82,7 +81,7 @@ export const AddExpenseForm = ({
         </label>
       </div>
 
-      <div className="input-wrapper">
+      <div className="input-grid-wrapper">
         <label className="input-label">
           {ExpenseForm.Amount}
           <input
@@ -100,7 +99,7 @@ export const AddExpenseForm = ({
           {ExpenseForm.PaymentDate}
           <input
             className="input input-expense"
-            type="date"
+            type="datetime-local"
             id="paymentDate"
             placeholder={ExpenseForm.PaymentDate}
             value={expense.paymentDate}

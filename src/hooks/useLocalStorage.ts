@@ -14,5 +14,3 @@ export const useLocalStorage = <T>(key: string, initialValue: T): [T, SetValue<T
 
   return [value, setStoredValue]
 }
-
-export default useLocalStorage

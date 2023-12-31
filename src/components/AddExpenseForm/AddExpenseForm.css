@@ -2,16 +2,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px 40px;
+  padding: 20px 30px;
   gap: 20px;
   border: 2px solid #555;
   margin: 20px auto;
-  width: 560px;
+  width: min-content;
   border-radius: 8px;
-  background-color: whitesmoke;
+  background-color: #f8f9fa;
 }
 
-.input-wrapper {
+.input-grid-wrapper {
   display: flex;
   flex-direction: row;
   gap: 30px;
@@ -26,31 +26,32 @@
   gap: 5px;
 }
 
-.input-expense {
-  transition: none;
+.input-expense.input {
   background-color: #55555513;
-}
-.input-expense:focus {
-  width: 200px;
-  border: 2px solid #555;
+  min-width: 240px;
+  width: 100%;
 }
 
-@media only screen and (max-width: 480px) {
+.input-expense.input:focus {
+  width: 100%;
+}
+
+@media only screen and (max-width: 600px) {
   .expense-form {
+    width: 90%;
     flex-direction: column;
-    align-items: center;
+  }
+
+  .input-grid-wrapper {
+    width: 100%;
+    flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: 492px) {
+  .expense-form {
     gap: 10px;
     padding: inherit;
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .input-wrapper {
-    width: 100%;
-    flex-direction: column;
-  }
-
-  .input-expense:focus {
     width: 100%;
   }
 }
