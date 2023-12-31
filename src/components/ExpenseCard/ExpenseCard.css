@@ -1,0 +1,40 @@
+.card-container {
+  min-width: 350px;
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  background-color: whitesmoke;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.card-body {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid gray;
+  padding-bottom: 5px;
+}
+
+.card-field {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin: 5px 0;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.card-subtitle {
+  font-weight: 400;
+  color: dimgray;
+}
+
+.card-footer {
+  justify-content: flex-end;
+  padding-top: 5px;
+  font-weight: 300;
+  font-style: oblique;
+}
