@@ -1,7 +1,7 @@
+import { Header } from './Header/Header'
+import { Main } from './Main/Main'
+import { Footer } from './Footer/Footer'
 import './Layout.css'
-import Header from './Header/Header'
-import Main from './Main/Main'
-import Footer from './Footer/Footer'
 
 type LayoutProps = {
   children: JSX.Element | JSX.Element[]
@@ -16,5 +16,3 @@ export const Layout = ({ children }: LayoutProps) => {
     </div>
   )
 }
-
-export default Layout

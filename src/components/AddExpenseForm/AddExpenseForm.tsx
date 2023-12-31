@@ -1,7 +1,6 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
-import { Commons, ExpenseForm } from '@/constants/Forms'
+import { Commons, ExpenseForm, initialExpense, initialExpenseError } from '@/constants'
 import { ExpenseFormErrors, Expense, StoredExpense, StoredUser } from '@/models'
-import { initialExpense, initialExpenseError } from '@/constants/InitialData'
 import './AddExpenseForm.css'
 
 export interface AddExpenseFormProps {

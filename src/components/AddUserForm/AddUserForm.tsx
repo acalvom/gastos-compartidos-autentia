@@ -1,7 +1,6 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
-import { Commons, UserForm } from '@/constants/Forms'
+import { Commons, UserForm, initalUser, initalUserError  } from '@/constants'
 import { UserFormErrors, StoredUser, User } from '@/models'
-import { initalUser, initalUserError } from '@/constants/InitialData'
 import './AddUserForm.css'
 
 export interface AddUserFormProps {
