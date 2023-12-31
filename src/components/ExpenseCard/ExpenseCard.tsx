@@ -2,7 +2,7 @@ import money from '@/assets/money.png'
 import ticket from '@/assets/ticket.png'
 import { useLocalStorage } from '@/hooks/useLocalStorage'
 import { StoredExpense, StoredUser, User } from '@/models'
-import { dateFormatter } from '@/utils/dateFormatter'
+import { dateFormatter } from '@/utils'
 import './ExpenseCard.css'
 
 interface ExpenseCardProps {

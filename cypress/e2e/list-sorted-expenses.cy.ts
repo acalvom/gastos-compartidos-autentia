@@ -1,4 +1,4 @@
-import { dateFormatter } from '../../src/utils/dateFormatter'
+import { dateFormatter } from '../../src/utils'
 
 describe('List expenses workflow', () => {
   const setup = () => {
