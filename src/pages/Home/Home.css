@@ -4,7 +4,13 @@
   justify-content: center;
 }
 
-.home-wrapper {
+.home-balance {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.home-expenses-list {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
