@@ -9,3 +9,11 @@ export interface StoredExpense {
 }
 
 export type Expense = Omit<StoredExpense, 'id'>
+
+export interface Balances {
+  [key: string]: {
+    payer: StoredUser;
+    paid: number;
+    accDebt: number;
+  };
+}
