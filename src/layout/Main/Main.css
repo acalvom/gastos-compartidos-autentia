@@ -1,7 +1,7 @@
 .app-main {
   flex: 1;
   padding: 2rem 5rem;
-  margin-top: 100px;
+  margin: 100px 0;
 }
 
 @media only screen and (max-width: 768px) {
