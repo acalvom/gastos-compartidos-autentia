@@ -4,7 +4,24 @@
   justify-content: center;
 }
 
-.home-wrapper {
+.home-title {
+  margin-top: 0;
+  color: #555;
+  display: flex;
+  justify-content: center;
+}
+
+.home-balance {
+  display: flex;
+  flex-direction: column;
+  background-color: #f8f9fa;
+  padding: 2rem;
+  border-radius: 10px;
+  width: max-content;
+  margin: 10px auto 15px;
+}
+
+.home-expenses-list {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
