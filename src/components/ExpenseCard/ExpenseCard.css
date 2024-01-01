@@ -8,6 +8,23 @@
   border-radius: 10px;
 }
 
+.card-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-button {
+  display: flex;
+  border-radius: 50%;
+  padding: 3px 5px;
+  border: 2px solid red;
+  height: min-content;
+  cursor: pointer;
+}
+
+
 .card-body {
   display: flex;
   justify-content: space-between;

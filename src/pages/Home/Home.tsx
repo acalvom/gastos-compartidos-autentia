@@ -9,11 +9,21 @@ import { BalanceEntry } from '@/components/BalanceEntry/BalanceEntry'
 import './Home.css'
 
 export const Home = () => {
-  const [storedExpenses] = useLocalStorage<StoredExpense[]>('gastos', [])
+  const [storedExpenses, setStoredExpenses] = useLocalStorage<StoredExpense[]>('gastos', [])
   const [storedUsers] = useLocalStorage<StoredUser[]>('amigos', [])
 
   const sortedExpenses = sortExpenses(storedExpenses)
   const balance = calculateBalance(storedExpenses, storedUsers)
+
+  const handleDelete = (index: string) => {
+    const idxToDelete = storedExpenses.findIndex((expense) => expense.id === index)
+
+    if (idxToDelete === -1) return
+  
+    const updatedExpenses = [...storedExpenses]
+    updatedExpenses.splice(idxToDelete, 1)
+    setStoredExpenses(updatedExpenses)
+  }
 
   return (
     <Layout>
@@ -33,8 +43,12 @@ export const Home = () => {
       <div className="home-expenses">
         <h2 className="home-title">{ExpenseTitle}</h2>
         <div className="home-expenses-list" data-testid="expenses-list">
-          {sortedExpenses.map((expese) => (
-            <ExpenseCard key={expese.id} expense={expese} />
+          {sortedExpenses.map((expense) => (
+            <ExpenseCard
+              key={expense.id}
+              expense={expense}
+              handleDelete={() => handleDelete(expense.id)}
+            />
           ))}
         </div>
       </div>
