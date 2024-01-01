@@ -4,10 +4,21 @@
   justify-content: center;
 }
 
-.home-balance {
+.home-title {
+  margin-top: 0;
+  color: #555;
   display: flex;
   justify-content: center;
-  margin-top: 10px;
+}
+
+.home-balance {
+  display: flex;
+  flex-direction: column;
+  background-color: #f8f9fa;
+  padding: 2rem;
+  border-radius: 10px;
+  width: max-content;
+  margin: 10px auto 15px;
 }
 
 .home-expenses-list {
