@@ -68,4 +68,14 @@ describe('List expenses workflow', () => {
         )
       })
   })
+
+  it('Deletes an element from Home page', () => {
+    setup()
+
+    cy.getByTestId('expenses-list').should('exist').and('be.visible').as('expensesList')
+    cy.get('@expensesList').children().should('have.length', 3)
+    cy.get('@expensesList').children().first().as('firstCard')
+    cy.get('@firstCard').within(() => cy.getByTestId('card-button').click())
+    cy.get('@expensesList').children().should('have.length', 2)
+  })
 })
