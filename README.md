@@ -1,30 +1,134 @@
-# React + TypeScript + Vite
+# 💻 Gestión de gastos 💰
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> Code challenge proposed by Autentia - Andrea Calvo Moreno
 
-Currently, two official plugins are available:
+This repository contains the frontend code for the application. Project management has been carried out using Agile Kanban methodology on GitHub, with the project board available. [here](https://github.com/users/acalvom/projects/2).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## ➕ App Improvements:
 
-- Configure the top-level `parserOptions` property like this:
+- Custom hook to handle local storage.
+- Not Found page.
+- Delete expenses feature
+- Routing system with `react-router`
+- Unit tests for components using `React Testing Library` and `Vitest`.
+- Hook tests for the custom Oompa Loompa Hook using `React Testing Library`.
+- E2E tests with `Cypress 12` suite for app workflows.
+- Incorporate linters and guards like `husky`, `commitlint`, `eslint`, and `prettier`.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+## 🧭 Technical Decisions:
+
+- Minimum transaction workflow is not implemented, work in progress.
+
+## 🫀 How It Works
+
+Once the app is running, the user sees the home page displaying the stored expenses in the local storage.
+
+To add more expenses or friends, the user navigates to `/create` link and fills the forms on the page.
+
+Clicking on an expense X card the espense is removed from the app and local storage so it is not taken into consideration any more.
+
+If the user attempts to access a non-existing page, they will be redirected to a `Not Found` page. Clicking the button returns the user to the home page.
+
+## ⚙️ Tech Stack
+
+▪️ `Git` `GitHub` `Docker` `Vite` `Vercel`  
+▪️ `React` `TypeScript` `React-Router`  
+▪️ `Cypress 12` `React Testing Library` `Vitest`
+
+### 👣 A Little Further On:
+
+- App development progress has been tracked with a [Kanban project](https://github.com/users/acalvom/projects/2) on Github.
+- Tickets associated with requirements and app features have been created and labeled based on priority:
+  - 🔴 P0: High Priority
+  - 🟠 P1: Mid Priority
+  - 🟡 P2: Low Priority
+- Three boards (To do, In progress, and Done) display tickets based on their resolution status.
+- Workflow:
+  - `git` has been used to handle the workflow and version control.
+  - A main workflow associated with the `main` branch is established, and finished tickets are merged into it via `pull requests`.
+  - Ticket branches follow the `feat/xxx` and `test/yyy` patterns.
+  - Once a ticket is resolved, the branch with the resolved issue is merged with `main` using a `pull request` with a `squash` approach.
+
+## 🏁 **Getting Started**
+
+### 🛠 **System Requirements**
+
+- `node: v18`
+- `npm: v8`
+
+### 🏗 **Project Installation**
+
+```bash
+# Clone this repository
+$ git clone https://github.com/acalvom/gastos-compartidos-autentia.git
+
+# Navigate to the repository
+$ cd gastos-compartidos-autentia
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+➡️ **_Option 🅰️: Run in local environment_**
+
+```bash
+# Install dependencies
+$ gastos-compartidos-autentia > npm install
+
+# Run the app
+$ npm run dev
+```
+
+
+➡️ **_Option 🅱️: Run in Docker_**
+
+⚠️ Note: Docker must be installed on your machine.
+
+```bash
+# Build the Docker image with the name `gastos-compartidos-autentia`. This might take some time.
+$ docker build -t gastos-compartidos-autentia .
+
+# Check the created image
+$ docker image ls
+
+# Run the image `gastos-compartidos-autentia` in the container `gastos-compartidos-autentia-container`, exposing port 3000
+$ docker run --name gastos-compartidos-autentia-container -p 3000:3000 -d gastos-compartidos-autentia
+
+# Open `http://localhost:3000/` to access the app running in the Docker container
+```
+
+### 🧾 Hightlighted scripts in `package.json`
+
+```bash
+# Run the app in localhost (PORT: 3000)
+$ npm run dev
+
+# Build the app
+$ npm run build
+
+# Run unit tests
+$ npm run test
+
+# Run e2e tests
+$ npm run cypress:open
+```
+
+### [☁ Vercel deployment](https://gastos-compartidos-autentia.vercel.app/)
+
+### 🫂 **You can reach me at:**
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tbody>
+    <tr>
+      <td align="center" valign="top" width="16.66%"><a href="https://github.com/acalvom"><img src="https://avatars.githubusercontent.com/u/34605171?s=88&v=4" width="100px;" alt="acalvom"/><br /><sub><b>acalvom
+      </b></sub></a><br /></td>
+    </tr>
+  </tbody>
+</table>
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+<br>
