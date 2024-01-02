@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import { Layout } from '@/layout/Layout'
 import { AddItem, BalanceSummary, ExpenseTitle } from '@/constants'
 import { sortExpenses, calculateBalance } from '@/utils'
@@ -6,6 +5,7 @@ import { useLocalStorage } from '@/hooks/useLocalStorage'
 import { StoredExpense, StoredUser } from '@/models'
 import { ExpenseCard } from '@/components/ExpenseCard/ExpenseCard'
 import { BalanceEntry } from '@/components/BalanceEntry/BalanceEntry'
+import { NavigationLink } from '@/components/NavigationLink/NavigationLink'
 import './Home.css'
 
 export const Home = () => {
@@ -19,7 +19,7 @@ export const Home = () => {
     const idxToDelete = storedExpenses.findIndex((expense) => expense.id === index)
 
     if (idxToDelete === -1) return
-  
+
     const updatedExpenses = [...storedExpenses]
     updatedExpenses.splice(idxToDelete, 1)
     setStoredExpenses(updatedExpenses)
@@ -27,11 +27,9 @@ export const Home = () => {
 
   return (
     <Layout>
-      <div className="home-button" data-testid="add-home-button">
-        <Link to="/create" className="button">
-          {AddItem}
-        </Link>
-      </div>
+      <NavigationLink link="/create" testId="add-home-button">
+        {AddItem}
+      </NavigationLink>
 
       <div className="home-balance" data-testid="balance">
         <h2 className="home-title">{BalanceSummary.title}</h2>

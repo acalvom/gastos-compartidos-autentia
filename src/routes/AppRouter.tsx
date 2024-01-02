@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { Home } from '@/pages/Home/Home'
 import { Create } from '@/pages/Create/Create'
+import { NotFound } from '@/pages/NotFound/NotFound'
 
 const routes = [
   {
@@ -12,7 +13,12 @@ const routes = [
     key: 'create',
     path: '/create',
     element: <Create />,
-  }
+  },
+  {
+    key: 'not-found',
+    path: '/*',
+    element: <NotFound />,
+  },
 ]
 
 export const AppRouter = () => {

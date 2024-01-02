@@ -1,10 +1,10 @@
-import { Link } from 'react-router-dom'
 import { Layout } from '@/layout/Layout'
 import { AddExpenseForm } from '@/components/AddExpenseForm/AddExpenseForm'
 import { AddUserForm } from '@/components/AddUserForm/AddUserForm'
 import { Commons } from '@/constants'
 import { useLocalStorage } from '@/hooks/useLocalStorage'
 import { StoredUser, StoredExpense } from '@/models'
+import { NavigationLink } from '@/components/NavigationLink/NavigationLink'
 
 export const Create = () => {
   const [storedUsers, setStoredUsers] = useLocalStorage<StoredUser[]>('amigos', [])
@@ -18,9 +18,9 @@ export const Create = () => {
         storedExpenses={storedExpenses}
         setStoredExpenses={setStoredExpenses}
       />
-      <Link to="/">
-        <button className="button">{Commons.BackButton}</button>
-      </Link>
+      <NavigationLink link="/" testId="add-home-button">
+        {Commons.BackButton}
+      </NavigationLink>
     </Layout>
   )
 }

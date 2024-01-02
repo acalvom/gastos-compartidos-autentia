@@ -52,6 +52,17 @@ body {
   cursor: pointer;
   border-radius: 5px;
 }
+.button:hover {
+  background-color: #fdc9bc;
+  border: 2px solid #c56a69;
+  color: #b55553;
+}
+.button:disabled {
+  background-color: #bdbdbd;
+  border: 1px solid #555;
+  color: #444444;
+  cursor: not-allowed;
+}
 
 @media only screen and (max-width: 480px) {
   .input {
