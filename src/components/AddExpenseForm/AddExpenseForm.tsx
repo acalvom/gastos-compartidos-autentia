@@ -16,6 +16,7 @@ export const AddExpenseForm = ({
 }: AddExpenseFormProps) => {
   const [expense, setExpense] = useState<Expense>(initialExpense)
   const [errors, setErrors] = useState<ExpenseFormErrors>(initialExpenseError)
+  const [isDisabled, setIsDisabled] = useState<boolean>(true)
 
   const resetForm = () => setExpense(initialExpense)
   const isValidForm = () => {
@@ -32,6 +33,7 @@ export const AddExpenseForm = ({
 
   const handleOnChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setErrors({ ...errors, [e.target.id]: '' })
+    setIsDisabled(false)
     setExpense({ ...expense, [e.target.id]: e.target.value })
   }
 
@@ -110,7 +112,12 @@ export const AddExpenseForm = ({
         </label>
       </div>
 
-      <button className="button" type="submit" data-testid="add-expense-button">
+      <button
+        className="button"
+        type="submit"
+        data-testid="add-expense-button"
+        disabled={isDisabled}
+      >
         {ExpenseForm.Button}
       </button>
     </form>

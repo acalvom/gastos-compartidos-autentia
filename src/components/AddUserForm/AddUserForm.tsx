@@ -1,5 +1,5 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
-import { Commons, UserForm, initalUser, initalUserError  } from '@/constants'
+import { Commons, UserForm, initalUser, initalUserError } from '@/constants'
 import { UserFormErrors, StoredUser, User } from '@/models'
 import './AddUserForm.css'
 
@@ -11,7 +11,8 @@ export interface AddUserFormProps {
 export const AddUserForm = ({ storedUsers, setStoredUsers }: AddUserFormProps) => {
   const [user, setUser] = useState<User>(initalUser)
   const [errors, setErrors] = useState<UserFormErrors>(initalUserError)
-
+  const [isDisabled, setIsDisabled] = useState<boolean>(true)
+  
   const resetForm = () => setUser(initalUser)
   const isValidForm = () => {
     const formErrors: UserFormErrors = {
@@ -25,6 +26,7 @@ export const AddUserForm = ({ storedUsers, setStoredUsers }: AddUserFormProps) =
 
   const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
     setErrors({ ...errors, [e.target.id]: '' })
+    setIsDisabled(false)
     setUser({ ...user, [e.target.id]: e.target.value })
   }
 
@@ -63,7 +65,7 @@ export const AddUserForm = ({ storedUsers, setStoredUsers }: AddUserFormProps) =
           {errors.lastName && <span className="error">{errors.lastName}</span>}
         </div>
       </div>
-      <button className="button" type="submit" data-testid="add-user-button">
+      <button className="button" type="submit" data-testid="add-user-button" disabled={isDisabled}>
         {UserForm.Button}
       </button>
     </form>
