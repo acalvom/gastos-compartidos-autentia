@@ -4,7 +4,7 @@ import './NavigationLink.css'
 interface NavigationLinkProps {
   children: React.ReactNode
   link: string
-  testId: string
+  testId?: string
 }
 
 export const NavigationLink = ({ children, link, testId }: NavigationLinkProps) => {
