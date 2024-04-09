@@ -5,6 +5,7 @@ import { Layout } from '@/layout/Layout'
 import { Balances } from '@/models'
 
 import { ExpenseList } from '@/modules/expenses/ui/components/expense-list/expense-list.component'
+import { UserList } from '@/modules/users/ui/components/user-list-component'
 import './Home.css'
 
 export const Home = () => {
@@ -38,6 +39,7 @@ export const Home = () => {
         ))}
       </div>
 
+      <UserList />
       <ExpenseList />
       {/* <div className="home-expenses">
         <h2 className="home-title">{ExpenseTitle}</h2>
