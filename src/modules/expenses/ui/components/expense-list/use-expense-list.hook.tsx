@@ -1,6 +1,6 @@
 import { Expense } from '@/modules/expenses/domain/expense'
+import { ExpenseLocator } from '@/modules/expenses/ui/di/expense.locator'
 import { useEffect, useState } from 'react'
-import { ExpenseLocator } from '../../di/expense.locator'
 
 export function useExpenseList() {
   const [expenses, setExpenses] = useState<Expense[]>([])
