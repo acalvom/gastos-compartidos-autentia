@@ -10,6 +10,8 @@ export interface StoredExpense {
 
 export type Expense = Omit<StoredExpense, 'id'>
 
+
+// TODO: Un fichero por entidad. Balance es una entidad en si misma
 export interface Balance {
   payer: StoredUser
   paid: number
