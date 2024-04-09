@@ -10,6 +10,7 @@ export const Create = () => {
   const [storedUsers, setStoredUsers] = useLocalStorage<StoredUser[]>('amigos', [])
   const [storedExpenses, setStoredExpenses] = useLocalStorage<StoredExpense[]>('gastos', [])
 
+  // TODO: separar en dos rutas para cada creación 
   return (
     <Layout>
       <AddUserForm storedUsers={storedUsers} setStoredUsers={setStoredUsers} />
