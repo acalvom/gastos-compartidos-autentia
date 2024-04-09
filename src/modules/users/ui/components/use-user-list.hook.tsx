@@ -5,8 +5,8 @@ import { useEffect, useState } from 'react'
 export function useUserList() {
   const [users, setUsers] = useState<User[]>([])
   const getUsers = async () => {
-    const getUserQuery = UserLocator.getUserQuery()
-    const users = await getUserQuery.execute()
+    const getUsersQuery = UserLocator.getUsersQuery()
+    const users = await getUsersQuery.execute()
     setUsers(users)
   }
 
