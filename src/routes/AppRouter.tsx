@@ -1,7 +1,7 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { Home } from '@/pages/Home/Home'
 import { Create } from '@/pages/Create/Create'
+import { Home } from '@/pages/Home/Home'
 import { NotFound } from '@/pages/NotFound/NotFound'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 const routes = [
   {

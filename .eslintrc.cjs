@@ -8,10 +8,17 @@ module.exports = {
     'plugin:cypress/recommended',
     'prettier',
   ],
-  ignorePatterns: ['dist', '.eslintrc.cjs', 'commitlint.config.cjs', 'webpack.config.cjs', 'cypress.config.ts'],
+  ignorePatterns: [
+    'dist',
+    '.eslintrc.cjs',
+    'commitlint.config.cjs',
+    'webpack.config.cjs',
+    'cypress.config.ts',
+  ],
   parser: '@typescript-eslint/parser',
   plugins: ['react-refresh', 'cypress'],
   rules: {
     'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
+    '@typescript-eslint/no-unused-vars': 'warn',
   },
 }

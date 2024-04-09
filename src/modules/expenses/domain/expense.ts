@@ -1,3 +1,5 @@
+import { Id } from '@/shared/domain/interface/id'
+
 interface IExpense {
   id: Id
   payer: Id
@@ -20,5 +22,3 @@ export class Expense implements IExpense {
     this.paymentDate = value.paymentDate
   }
 }
-
-export type Id = string

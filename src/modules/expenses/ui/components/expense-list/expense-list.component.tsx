@@ -1,5 +1,5 @@
 import { ExpenseCard } from '@/components/ExpenseCard/ExpenseCard'
-import { useExpenseList } from './useExpenseList.hook'
+import { useExpenseList } from './use-expense-list.hook'
 
 const ExpenseTitle = '🤑 Gastos del grupo'
 
