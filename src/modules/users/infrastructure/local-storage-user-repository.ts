@@ -1,20 +1,30 @@
+import { AddUserDto } from '../application/dtos/add-user.dto'
 import { User } from '../domain/user'
 import { UserRepository } from '../domain/user.repository'
 
-// FIXME: check this try catch. should it be here?
+// ASKME: check this try catch. should it be here?
 export class LocalStorageUserRepository implements UserRepository {
   getAll(): Promise<User[]> {
     try {
-      const storedValue = localStorage.getItem('amigos')
-      return storedValue ? JSON.parse(storedValue) : []
+      const users = localStorage.getItem('users')
+      return users ? JSON.parse(users) : []
     } catch (error) {
       throw new Error(error as string)
     }
   }
 
-  add(user: User): Promise<void> {
+  add(user: AddUserDto): Promise<void> {
     try {
-      return Promise.resolve(localStorage.setItem('amigos', JSON.stringify(user)))
+      // ASKME: Esto no es duplicar?
+      const usersString = localStorage.getItem('users')
+      const users = usersString ? JSON.parse(usersString) : []
+
+      return Promise.resolve(
+        localStorage.setItem(
+          'users',
+          JSON.stringify([...users, { ...user, id: user.firstName + user.lastName }])
+        )
+      )
     } catch (error) {
       throw new Error(error as string)
     }
