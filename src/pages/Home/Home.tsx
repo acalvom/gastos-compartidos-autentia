@@ -5,7 +5,7 @@ import { Layout } from '@/layout/Layout'
 import { Balances } from '@/models'
 
 import { ExpenseList } from '@/modules/expenses/ui/components/expense-list/expense-list.component'
-import { UserList } from '@/modules/users/ui/components/user-list-component'
+import { UserList } from '@/modules/users/ui/components/user-list.component'
 import './Home.css'
 
 export const Home = () => {

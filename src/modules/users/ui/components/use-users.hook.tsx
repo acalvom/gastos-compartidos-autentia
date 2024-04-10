@@ -3,7 +3,7 @@ import { UserLocator } from '@/modules/users/ui/di/users.locator'
 import { useEffect, useState } from 'react'
 import { AddUserDto } from '../../application/dtos/add-user.dto'
 
-export function useUserList() {
+export function useUsers() {
   const [users, setUsers] = useState<User[]>([])
 
   const getUsers = async () => {
