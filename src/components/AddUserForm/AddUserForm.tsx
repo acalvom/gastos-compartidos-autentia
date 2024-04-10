@@ -1,16 +1,12 @@
 import { Commons, UserForm, initalUser, initalUserError } from '@/constants'
 import { UserFormErrors } from '@/models'
 import { AddUserDto } from '@/modules/users/application/dtos/add-user.dto'
+import { useUsers } from '@/modules/users/ui/components/use-users.hook'
 import { ChangeEvent, FormEvent, useState } from 'react'
 import './AddUserForm.css'
 
-export interface AddUserFormProps {
-  storedUsers: AddUserDto[]
-  setStoredUser: (user: AddUserDto) => void
-  // setStoredUsers: (users: StoredUser[]) => void
-}
-
-export const AddUserForm = ({ setStoredUser }: AddUserFormProps) => {
+export const AddUserForm = () => {
+  const { addUser } = useUsers()
   const [user, setUser] = useState<AddUserDto>(initalUser)
   const [errors, setErrors] = useState<UserFormErrors>(initalUserError)
   const [isDisabled, setIsDisabled] = useState<boolean>(true)
@@ -35,8 +31,7 @@ export const AddUserForm = ({ setStoredUser }: AddUserFormProps) => {
     e.preventDefault()
     if (!isValidForm()) return
 
-    setStoredUser(user)
-    // setStoredUsers([...storedUsers, { ...user, id: user.firstName + user.lastName }])
+    addUser(user)
     resetForm()
   }
 

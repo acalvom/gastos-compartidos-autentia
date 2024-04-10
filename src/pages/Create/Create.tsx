@@ -8,15 +8,13 @@ import { StoredExpense } from '@/models'
 import { useUsers } from '@/modules/users/ui/components/use-users.hook'
 
 export const Create = () => {
-  // const [storedUsers, setStoredUsers] = useLocalStorage<StoredUser[]>('amigos', [])
   const [storedExpenses, setStoredExpenses] = useLocalStorage<StoredExpense[]>('gastos', [])
-  const { users, addUser } = useUsers()
+  const { users } = useUsers()
 
   // TODO: separar en dos rutas para cada creación
   return (
     <Layout>
-      {/* <AddUserForm storedUsers={storedUsers} setStoredUsers={setStoredUsers} /> */}
-      <AddUserForm storedUsers={users} setStoredUser={addUser} />
+      <AddUserForm />
       <AddExpenseForm
         storedUsers={users}
         storedExpenses={storedExpenses}
