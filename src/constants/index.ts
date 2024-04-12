@@ -1,4 +1,4 @@
-export { Commons, ExpenseForm, UserForm } from './Forms'
+export { ExpenseForm } from './Forms'
 export { AddItem, BalanceSummary, ExpenseTitle } from './Home'
+export { initialExpense, initialExpenseError } from './InitialData'
 export { NotFoundPage } from './NotFound'
-export { initalUser, initalUserError, initialExpense, initialExpenseError } from './InitialData'

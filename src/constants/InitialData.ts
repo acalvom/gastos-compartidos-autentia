@@ -1,15 +1,4 @@
-import { Expense, ExpenseFormErrors, UserFormErrors } from '@/models'
-import { NewUser } from '@/modules/users/domain/new-user'
-
-export const initalUser: NewUser = {
-  firstName: '',
-  lastName: '',
-}
-
-export const initalUserError: UserFormErrors = {
-  firstName: '',
-  lastName: '',
-}
+import { Expense, ExpenseFormErrors } from '@/models'
 
 export const initialExpense: Expense = {
   payer: '',
