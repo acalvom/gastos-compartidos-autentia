@@ -1,13 +1,13 @@
 import { Commons, UserForm, initalUser, initalUserError } from '@/constants'
 import { UserFormErrors } from '@/models'
-import { AddUserDto } from '@/modules/users/application/dtos/add-user.dto'
-import { useUsers } from '@/modules/users/ui/components/use-users.hook'
+import { NewUser } from '@/modules/users/domain/new-user'
+import { useAddUser } from '@/modules/users/ui/components/use-add-user.hook'
 import { ChangeEvent, FormEvent, useState } from 'react'
 import './AddUserForm.css'
 
 export const AddUserForm = () => {
-  const { addUser } = useUsers()
-  const [user, setUser] = useState<AddUserDto>(initalUser)
+  const { addUser } = useAddUser()
+  const [user, setUser] = useState<NewUser>(initalUser)
   const [errors, setErrors] = useState<UserFormErrors>(initalUserError)
   const [isDisabled, setIsDisabled] = useState<boolean>(true)
   const resetForm = () => setUser(initalUser)

@@ -1,8 +1,8 @@
-import { useUsers } from './use-users.hook'
+import { useListUsers } from './use-list-users.hook'
 
 export const UserList = () => {
   // TODO: enhance styles
-  const { users } = useUsers()
+  const { users } = useListUsers()
   return (
     <div className="home-users">
       <h2 className="home-title">Usuarios</h2>

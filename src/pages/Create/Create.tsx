@@ -5,11 +5,11 @@ import { Commons } from '@/constants'
 import { useLocalStorage } from '@/hooks/useLocalStorage'
 import { Layout } from '@/layout/Layout'
 import { StoredExpense } from '@/models'
-import { useUsers } from '@/modules/users/ui/components/use-users.hook'
+import { useListUsers } from '@/modules/users/ui/components/use-list-users.hook'
 
 export const Create = () => {
   const [storedExpenses, setStoredExpenses] = useLocalStorage<StoredExpense[]>('gastos', [])
-  const { users } = useUsers()
+  const { users } = useListUsers()
 
   // TODO: separar en dos rutas para cada creación
   return (
