@@ -1,4 +1,4 @@
-import { useListUsers } from './use-list-users.hook'
+import { useListUsers } from '../../controllers/use-list-users.hook'
 
 export const UserList = () => {
   // TODO: enhance styles

@@ -1,7 +1,7 @@
 import { Commons, UserForm, initalUser, initalUserError } from '@/constants'
 import { UserFormErrors } from '@/models'
 import { NewUser } from '@/modules/users/domain/new-user'
-import { useAddUser } from '@/modules/users/ui/components/use-add-user.hook'
+import { useAddUser } from '@/modules/users/ui/controllers/use-add-user.hook'
 import { ChangeEvent, FormEvent, useState } from 'react'
 import './AddUserForm.css'
 
