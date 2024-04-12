@@ -1,9 +1,7 @@
-import { AddUserDto } from '../application/dtos/add-user.dto'
+import { NewUser } from './new-user'
 import { User } from './user'
 
 export interface UserRepository {
   getAll(): Promise<User[]>
-
-  // FIXME: NO PUEDO TENER APPLICATION EN DOMINIO
-  add(user: AddUserDto): Promise<void>
+  add(user: NewUser): Promise<void>
 }

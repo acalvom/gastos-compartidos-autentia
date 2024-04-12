@@ -1,7 +1,7 @@
 import { Expense, ExpenseFormErrors, UserFormErrors } from '@/models'
-import { AddUserDto } from '@/modules/users/application/dtos/add-user.dto'
+import { NewUser } from '@/modules/users/domain/new-user'
 
-export const initalUser: AddUserDto = {
+export const initalUser: NewUser = {
   firstName: '',
   lastName: '',
 }
