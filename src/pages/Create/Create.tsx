@@ -1,11 +1,13 @@
 import { AddExpenseForm } from '@/components/AddExpenseForm/AddExpenseForm'
-import { AddUserForm } from '@/components/AddUserForm/AddUserForm'
+
 import { NavigationLink } from '@/components/NavigationLink/NavigationLink'
-import { Commons } from '@/constants'
+
 import { useLocalStorage } from '@/hooks/useLocalStorage'
 import { Layout } from '@/layout/Layout'
 import { StoredExpense } from '@/models'
-import { useListUsers } from '@/modules/users/ui/components/use-list-users.hook'
+import { AddUserForm } from '@/modules/users/ui/components/add-user-form/add-user-form.component'
+import { useListUsers } from '@/modules/users/ui/controllers/use-list-users.hook'
+import { Common } from '@/shared/ui/texts/common-texts'
 
 export const Create = () => {
   const [storedExpenses, setStoredExpenses] = useLocalStorage<StoredExpense[]>('gastos', [])
@@ -21,7 +23,7 @@ export const Create = () => {
         setStoredExpenses={setStoredExpenses}
       />
       <NavigationLink link="/" testId="add-home-button">
-        {Commons.BackButton}
+        {Common.BackButton}
       </NavigationLink>
     </Layout>
   )
