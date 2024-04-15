@@ -1,3 +1,4 @@
+import { AddExpenseCommand } from '../../application/add-expense.command'
 import { GetExpensesQuery } from '../../application/get-expenses.query'
 import { LocalStorageExpenseRepository } from '../../infrastructure/local-storage-expense.repository'
 
@@ -6,5 +7,9 @@ export class ExpenseLocator {
 
   static getExpensesQuery() {
     return new GetExpensesQuery(this.localStorageExpenseRepository)
+  }
+
+  static addExpenseCommand() {
+    return new AddExpenseCommand(this.localStorageExpenseRepository)
   }
 }
