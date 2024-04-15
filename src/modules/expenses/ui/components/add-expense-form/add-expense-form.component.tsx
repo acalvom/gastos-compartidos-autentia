@@ -1,8 +1,8 @@
 import { NewExpense } from '@/modules/expenses/domain/new-expense'
-import { useUserList } from '@/modules/users/ui/controllers/use-user-list.hook'
 import { Common } from '@/shared/ui/texts/common-texts'
 import { ChangeEvent, FormEvent, useState } from 'react'
 import { useAddExpense } from '../../controllers/use-add-expense.hook'
+import { usePayerList } from '../../controllers/use-payer-list.hook'
 import './add-expense-form.styles.css'
 import { ExpenseForm, InitialExpense } from './add-expense.constants'
 
@@ -15,7 +15,7 @@ interface ExpenseFormErrors {
 
 export const AddExpenseForm = () => {
   const { addExpense } = useAddExpense()
-  const { users } = useUserList() // FIXME: rompes la arquitectura -> utiliza la entidad intermedia payer
+  const { payers } = usePayerList()
   const [expense, setExpense] = useState<NewExpense>(InitialExpense)
   const [errors, setErrors] = useState<ExpenseFormErrors>({
     errorPayerInput: '',
@@ -67,9 +67,9 @@ export const AddExpenseForm = () => {
             <option value="" disabled hidden>
               {ExpenseForm.SelectPayer}
             </option>
-            {users.map(({ id, firstName, lastName }) => (
+            {payers.map(({ id, fullName }) => (
               <option key={id} value={id}>
-                {firstName} {lastName}
+                {fullName}
               </option>
             ))}
           </select>
