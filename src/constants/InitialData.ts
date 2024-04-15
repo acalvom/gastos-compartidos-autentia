@@ -1,14 +1,4 @@
-import { Expense, ExpenseFormErrors, User, UserFormErrors } from '@/models'
-
-export const initalUser: User = {
-  firstName: '',
-  lastName: '',
-}
-
-export const initalUserError: UserFormErrors = {
-  firstName: '',
-  lastName: '',
-}
+import { Expense, ExpenseFormErrors } from '@/models'
 
 export const initialExpense: Expense = {
   payer: '',

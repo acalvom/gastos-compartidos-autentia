@@ -1,26 +1,29 @@
-import { Layout } from '@/layout/Layout'
 import { AddExpenseForm } from '@/components/AddExpenseForm/AddExpenseForm'
-import { AddUserForm } from '@/components/AddUserForm/AddUserForm'
-import { Commons } from '@/constants'
-import { useLocalStorage } from '@/hooks/useLocalStorage'
-import { StoredUser, StoredExpense } from '@/models'
+
 import { NavigationLink } from '@/components/NavigationLink/NavigationLink'
 
-export const Create = () => {
-  const [storedUsers, setStoredUsers] = useLocalStorage<StoredUser[]>('amigos', [])
-  const [storedExpenses, setStoredExpenses] = useLocalStorage<StoredExpense[]>('gastos', [])
+import { useLocalStorage } from '@/hooks/useLocalStorage'
+import { Layout } from '@/layout/Layout'
+import { StoredExpense } from '@/models'
+import { AddUserForm } from '@/modules/users/ui/components/add-user-form/add-user-form.component'
+import { useListUsers } from '@/modules/users/ui/controllers/use-list-users.hook'
+import { Common } from '@/shared/ui/texts/common-texts'
 
-  // TODO: separar en dos rutas para cada creación 
+export const Create = () => {
+  const [storedExpenses, setStoredExpenses] = useLocalStorage<StoredExpense[]>('gastos', [])
+  const { users } = useListUsers()
+
+  // TODO: separar en dos rutas para cada creación
   return (
     <Layout>
-      <AddUserForm storedUsers={storedUsers} setStoredUsers={setStoredUsers} />
+      <AddUserForm />
       <AddExpenseForm
-        storedUsers={storedUsers}
+        storedUsers={users}
         storedExpenses={storedExpenses}
         setStoredExpenses={setStoredExpenses}
       />
       <NavigationLink link="/" testId="add-home-button">
-        {Commons.BackButton}
+        {Common.BackButton}
       </NavigationLink>
     </Layout>
   )

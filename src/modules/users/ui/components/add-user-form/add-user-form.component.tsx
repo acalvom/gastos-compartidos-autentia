@@ -1,23 +1,28 @@
+import { NewUser } from '@/modules/users/domain/new-user'
+import { useAddUser } from '@/modules/users/ui/controllers/use-add-user.hook'
+import { Common } from '@/shared/ui/texts/common-texts'
 import { ChangeEvent, FormEvent, useState } from 'react'
-import { Commons, UserForm, initalUser, initalUserError } from '@/constants'
-import { UserFormErrors, StoredUser, User } from '@/models'
-import './AddUserForm.css'
+import './add-user-form.styles.css'
+import { InitialUser, UserFormTexts } from './add-user.constants'
 
-export interface AddUserFormProps {
-  storedUsers: StoredUser[]
-  setStoredUsers: (users: StoredUser[]) => void
+interface UserFormErrors {
+  errorFirstNameInput: string
+  errorLastNameInput: string
 }
 
-export const AddUserForm = ({ storedUsers, setStoredUsers }: AddUserFormProps) => {
-  const [user, setUser] = useState<User>(initalUser)
-  const [errors, setErrors] = useState<UserFormErrors>(initalUserError)
+export const AddUserForm = () => {
+  const { addUser } = useAddUser()
+  const [user, setUser] = useState<NewUser>(InitialUser)
+  const [errors, setErrors] = useState<UserFormErrors>({
+    errorFirstNameInput: '',
+    errorLastNameInput: '',
+  })
   const [isDisabled, setIsDisabled] = useState<boolean>(true)
-  
-  const resetForm = () => setUser(initalUser)
+  const resetForm = () => setUser(InitialUser)
   const isValidForm = () => {
     const formErrors: UserFormErrors = {
-      firstName: !user.firstName ? Commons.FieldRequired : '',
-      lastName: !user.lastName ? Commons.FieldRequired : '',
+      errorFirstNameInput: !user.firstName ? Common.FieldRequired : '',
+      errorLastNameInput: !user.lastName ? Common.FieldRequired : '',
     }
 
     setErrors(formErrors)
@@ -34,7 +39,7 @@ export const AddUserForm = ({ storedUsers, setStoredUsers }: AddUserFormProps) =
     e.preventDefault()
     if (!isValidForm()) return
 
-    setStoredUsers([...storedUsers, { ...user, id: user.firstName + user.lastName }])
+    addUser(user)
     resetForm()
   }
 
@@ -46,11 +51,13 @@ export const AddUserForm = ({ storedUsers, setStoredUsers }: AddUserFormProps) =
             className="input"
             type="text"
             id="firstName"
-            placeholder={UserForm.Name}
+            placeholder={UserFormTexts.Name}
             value={user.firstName}
             onChange={handleOnChange}
           />
-          {errors.firstName && <span className="error">{errors.firstName}</span>}
+          {errors.errorFirstNameInput && (
+            <span className="error">{errors.errorFirstNameInput}</span>
+          )}
         </div>
 
         <div className="input-wrapper" data-testid="last-name-wrapper">
@@ -58,15 +65,15 @@ export const AddUserForm = ({ storedUsers, setStoredUsers }: AddUserFormProps) =
             className="input"
             type="text"
             id="lastName"
-            placeholder={UserForm.LastName}
+            placeholder={UserFormTexts.LastName}
             value={user.lastName}
             onChange={handleOnChange}
           />
-          {errors.lastName && <span className="error">{errors.lastName}</span>}
+          {errors.errorLastNameInput && <span className="error">{errors.errorLastNameInput}</span>}
         </div>
       </div>
       <button className="button" type="submit" data-testid="add-user-button" disabled={isDisabled}>
-        {UserForm.Button}
+        {UserFormTexts.Button}
       </button>
     </form>
   )

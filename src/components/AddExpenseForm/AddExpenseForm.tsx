@@ -1,6 +1,7 @@
+import { ExpenseForm, initialExpense, initialExpenseError } from '@/constants'
+import { Expense, ExpenseFormErrors, StoredExpense, StoredUser } from '@/models'
+import { Common } from '@/shared/ui/texts/common-texts'
 import { ChangeEvent, FormEvent, useState } from 'react'
-import { Commons, ExpenseForm, initialExpense, initialExpenseError } from '@/constants'
-import { ExpenseFormErrors, Expense, StoredExpense, StoredUser } from '@/models'
 import './AddExpenseForm.css'
 
 export interface AddExpenseFormProps {
@@ -21,10 +22,10 @@ export const AddExpenseForm = ({
   const resetForm = () => setExpense(initialExpense)
   const isValidForm = () => {
     const formErrors: ExpenseFormErrors = {
-      payer: !expense.payer ? Commons.FieldRequired : '',
-      amount: !expense.amount ? Commons.FieldRequired : '',
-      description: !expense.description ? Commons.FieldRequired : '',
-      paymentDate: !expense.paymentDate ? Commons.FieldRequired : '',
+      payer: !expense.payer ? Common.FieldRequired : '',
+      amount: !expense.amount ? Common.FieldRequired : '',
+      description: !expense.description ? Common.FieldRequired : '',
+      paymentDate: !expense.paymentDate ? Common.FieldRequired : '',
     }
 
     setErrors(formErrors)

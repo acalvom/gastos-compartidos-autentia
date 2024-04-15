@@ -2,11 +2,12 @@ import { User } from '@/modules/users/domain/user'
 import { UserLocator } from '@/modules/users/ui/di/users.locator'
 import { useEffect, useState } from 'react'
 
-export function useUserList() {
+export function useListUsers() {
   const [users, setUsers] = useState<User[]>([])
+
   const getUsers = async () => {
-    const getUserQuery = UserLocator.getUserQuery()
-    const users = await getUserQuery.execute()
+    const getUsersQuery = UserLocator.getUsersQuery()
+    const users = await getUsersQuery.execute()
     setUsers(users)
   }
 
