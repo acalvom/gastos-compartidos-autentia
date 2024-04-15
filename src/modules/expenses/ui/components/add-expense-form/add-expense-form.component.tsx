@@ -28,7 +28,7 @@ export const AddExpenseForm = () => {
   const resetForm = () => setExpense(InitialExpense)
   const isValidForm = () => {
     const formErrors: ExpenseFormErrors = {
-      errorPayerInput: !expense.payer ? Common.FieldRequired : '',
+      errorPayerInput: !expense.payerId ? Common.FieldRequired : '',
       errorAmountInput: !expense.amount ? Common.FieldRequired : '',
       errorDescriptionInput: !expense.description ? Common.FieldRequired : '',
       errorPaymentDateInput: !expense.paymentDate ? Common.FieldRequired : '',
@@ -59,9 +59,9 @@ export const AddExpenseForm = () => {
           {ExpenseForm.Payer}
           <select
             className="input input-expense"
-            value={expense.payer}
+            value={expense.payerId}
             onChange={handleOnChange}
-            id="payer"
+            id="payerId"
             data-testid="payer-input"
           >
             <option value="" disabled hidden>

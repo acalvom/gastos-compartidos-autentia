@@ -1,7 +1,7 @@
 import { NewExpense } from '@/modules/expenses/domain/new-expense'
 
 export const InitialExpense: NewExpense = {
-  payer: '',
+  payerId: '',
   amount: 0,
   description: '',
   paymentDate: '',
