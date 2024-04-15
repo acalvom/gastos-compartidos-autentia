@@ -1,9 +1,9 @@
-import { useListUsers } from '../../controllers/use-list-users.hook'
+import { useUserList } from '../../controllers/use-user-list.hook'
 import './user-list.styles.css'
 
 export const UserList = () => {
   // TODO: enhance styles
-  const { users } = useListUsers()
+  const { users } = useUserList()
   return (
     <div className="home-users">
       <h2 className="home-title">Usuarios</h2>

@@ -1,5 +1,5 @@
 import { NewExpense } from '@/modules/expenses/domain/new-expense'
-import { useListUsers } from '@/modules/users/ui/controllers/use-list-users.hook'
+import { useUserList } from '@/modules/users/ui/controllers/use-user-list.hook'
 import { Common } from '@/shared/ui/texts/common-texts'
 import { ChangeEvent, FormEvent, useState } from 'react'
 import { useAddExpense } from '../../controllers/use-add-expense.hook'
@@ -15,7 +15,7 @@ interface ExpenseFormErrors {
 
 export const AddExpenseForm = () => {
   const { addExpense } = useAddExpense()
-  const { users } = useListUsers() // FIXME: rompes la arquitectura -> utiliza la entidad intermedia payer
+  const { users } = useUserList() // FIXME: rompes la arquitectura -> utiliza la entidad intermedia payer
   const [expense, setExpense] = useState<NewExpense>(InitialExpense)
   const [errors, setErrors] = useState<ExpenseFormErrors>({
     errorPayerInput: '',
