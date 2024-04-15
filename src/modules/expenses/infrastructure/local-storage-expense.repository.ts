@@ -21,12 +21,18 @@ export class LocalStorageExpenseRepository implements ExpenseRepository {
 
   async addExpense(expense: NewExpense): Promise<void> {
     const expenses = this.getExpensesFromLocalStorage()
-    const newExpense = { ...expense, id: expense.payer + expense.paymentDate }
+    const newExpense = { ...expense, id: expense.payerId + expense.paymentDate }
     this.saveExpensesToLocalStorage([...expenses, newExpense])
   }
 
   async getPayers(): Promise<Payer[]> {
     const usersString = localStorage.getItem('users')
     return payersFromLocalStorage(usersString)
+  }
+
+  async getExpensePayer(payerId: string): Promise<Payer> {
+    const usersString = localStorage.getItem('users')
+    const payers = payersFromLocalStorage(usersString).find(({ id }) => id === payerId)
+    return payers ? payers : { id: '', fullName: '' }
   }
 }
