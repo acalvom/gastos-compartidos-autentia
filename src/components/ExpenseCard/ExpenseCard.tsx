@@ -1,18 +1,21 @@
 import money from '@/assets/money.png'
 import ticket from '@/assets/ticket.png'
 import { useLocalStorage } from '@/hooks/useLocalStorage'
-import { StoredExpense, StoredUser, User } from '@/models'
+import { Expense } from '@/modules/expenses/domain/expense'
+import { User } from '@/modules/users/domain/user'
 import { dateFormatter } from '@/utils'
 import './ExpenseCard.css'
 
 interface ExpenseCardProps {
-  expense: StoredExpense
+  expense: Expense
   handleDelete: () => void
 }
 
 export const ExpenseCard = ({ expense, handleDelete }: ExpenseCardProps) => {
   const { payer, description, amount, paymentDate } = expense
-  const [storedUsers] = useLocalStorage<StoredUser[]>('amigos', [])
+  // FIXME: desacoplar los usuarios de este componente. Este componente 'tonto' no debería tener que hacer la lógica de buscar usuarios en la infra
+  // FIXME: este componente, al ser tan específico debería ubicarse en el directorio modules/expenses/components/...
+  const [storedUsers] = useLocalStorage<User[]>('users', [])
   const { firstName, lastName } = storedUsers.find(({ id }) => id === payer) || ({} as User)
 
   return (
