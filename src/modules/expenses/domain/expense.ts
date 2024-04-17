@@ -11,6 +11,14 @@ interface IExpense {
   paymentDate: Date
 }
 
+export interface IExpensePrimitives {
+  id: Id
+  payerId: Id
+  description: string
+  amount: number
+  paymentDate: string
+}
+
 export class Expense implements IExpense {
   id: Id
   payerId: Id
@@ -24,6 +32,10 @@ export class Expense implements IExpense {
     this.description = value.description
     this.amount = value.amount
     this.paymentDate = value.paymentDate
+  }
+
+  static fromJson(value: IExpensePrimitives): Expense {
+    return new Expense({ ...value, paymentDate: Datetime.toDate(value.paymentDate) })
   }
 
   public getPaymentDateFormatted(): string {
