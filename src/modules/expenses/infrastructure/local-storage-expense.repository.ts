@@ -1,8 +1,8 @@
-import { Expense } from '../domain/expense'
+import { Expense, IExpensePrimitives } from '../domain/expense'
 import { ExpenseRepository } from '../domain/expense.repository'
 import { NewExpense } from '../domain/new-expense'
 import { Payer } from '../domain/payer'
-import { expensesFromLocalStorage } from './mappers/expenses.mapper'
+import { expensesFromLocalStorage, expensesToLocalStorage } from './mappers/expenses.mapper'
 import { payersFromLocalStorage } from './mappers/payers.mapper'
 
 export class LocalStorageExpenseRepository implements ExpenseRepository {
@@ -12,17 +12,22 @@ export class LocalStorageExpenseRepository implements ExpenseRepository {
   }
 
   private saveExpensesToLocalStorage(expenses: Expense[]): void {
-    localStorage.setItem('expenses', JSON.stringify(expenses))
+    const expensesString = expensesToLocalStorage(expenses)
+    localStorage.setItem('expenses', expensesString)
   }
 
   async getAll(): Promise<Expense[]> {
     return this.getExpensesFromLocalStorage()
   }
 
-  async addExpense(expense: NewExpense): Promise<void> {
+  async addExpense(newExpense: NewExpense): Promise<void> {
     const expenses = this.getExpensesFromLocalStorage()
-    const newExpense = { ...expense, id: expense.payerId + expense.paymentDate }
-    this.saveExpensesToLocalStorage([...expenses, newExpense])
+    const jsonExpense: IExpensePrimitives = {
+      ...newExpense,
+      id: newExpense.payerId + newExpense.paymentDate,
+    }
+
+    this.saveExpensesToLocalStorage([...expenses, Expense.fromJson(jsonExpense)])
   }
 
   async getPayers(): Promise<Payer[]> {

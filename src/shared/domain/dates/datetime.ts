@@ -5,6 +5,10 @@ export class Datetime {
     return dayjs(dateString).toDate()
   }
 
+  static toString(date: Date): string {
+    return dayjs(date).toISOString()
+  }
+
   static getDateFormatted(date: Date): string {
     return dayjs(date).format('DD-MM-YYYY')
   }

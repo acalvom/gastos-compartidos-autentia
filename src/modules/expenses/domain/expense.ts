@@ -38,6 +38,13 @@ export class Expense implements IExpense {
     return new Expense({ ...value, paymentDate: Datetime.toDate(value.paymentDate) })
   }
 
+  public toJson(): IExpensePrimitives {
+    return {
+      ...this,
+      paymentDate: Datetime.toString(this.paymentDate),
+    }
+  }
+
   public getPaymentDateFormatted(): string {
     return Datetime.getDateFormatted(this.paymentDate)
   }

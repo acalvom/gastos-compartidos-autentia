@@ -6,6 +6,7 @@ interface INewExpense {
   amount: number
   paymentDate: string
 }
+
 export class NewExpense implements INewExpense {
   payerId: Id
   description: string
