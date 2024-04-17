@@ -1,6 +1,7 @@
-// TODO: wip to be implemented
+import dayjs from 'dayjs'
+
 export class Datetime {
-  static getYearsTillToday(date: Date): number {
-    throw new Error('Unimplemented method' + date)
+  static getDateFormatted(date: Date): string {
+    return dayjs(date).format('DD-MM-YYYY')
   }
 }

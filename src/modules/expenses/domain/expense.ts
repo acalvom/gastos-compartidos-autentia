@@ -1,13 +1,14 @@
+import { Datetime } from '@/shared/domain/dates/datetime'
 import { Id } from '@/shared/domain/interface/id'
 
-// ASKME: sería mejor que payer sea de tipo Payer?
+// TODO: el atributo payerId lo sustituyes por payer, recives un Payer, y no un Id
 
 interface IExpense {
   id: Id
   payerId: Id
   description: string
   amount: number
-  paymentDate: string
+  paymentDate: Date
 }
 
 export class Expense implements IExpense {
@@ -15,7 +16,7 @@ export class Expense implements IExpense {
   payerId: Id
   description: string
   amount: number
-  paymentDate: string
+  paymentDate: Date
 
   constructor(value: IExpense) {
     this.id = value.id
@@ -23,5 +24,9 @@ export class Expense implements IExpense {
     this.description = value.description
     this.amount = value.amount
     this.paymentDate = value.paymentDate
+  }
+
+  public getPaymentDateFormatted(): string {
+    return Datetime.getDateFormatted(this.paymentDate)
   }
 }

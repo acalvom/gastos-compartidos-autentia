@@ -1,7 +1,6 @@
 import money from '@/assets/money.png'
 import ticket from '@/assets/ticket.png'
 import { Expense } from '@/modules/expenses/domain/expense'
-import { dateFormatter } from '@/utils'
 import { useExpensePayer } from '../../controllers/use-expense-payer.hook'
 import './expense-card.styles.css'
 
@@ -11,8 +10,12 @@ interface ExpenseCardProps {
 }
 
 export const ExpenseCard = ({ expense, handleDelete }: ExpenseCardProps) => {
-  const { payerId, description, amount, paymentDate } = expense
-  // ASKME: es correcto llamar al hook (controller) en un componente "básico" como puede ser este?
+  // FIXME: {`€${amount}`}. A través de un método de la clase Expense, recibes un string con la cantidad en el formato que esperas
+  // INFO: al destructurar objetos pierdes el contexto del this y por lo tanto dejas de poder utilizar los métodos de la clase Expense
+  const { payerId, description, amount } = expense
+  const date = expense.getPaymentDateFormatted()
+
+  // TODO: overkilling llamar al useExpensePayer desde aquí. Cambia la entidad Expense para que reciba un Payer en lugar de un payer Id
   const { payer } = useExpensePayer(payerId)
 
   return (
@@ -36,7 +39,7 @@ export const ExpenseCard = ({ expense, handleDelete }: ExpenseCardProps) => {
         </div>
       </div>
       <div className="card-field card-footer" data-testid="card-date">
-        {dateFormatter(paymentDate)}
+        {date}
       </div>
     </div>
   )
