@@ -1,5 +1,6 @@
 import { Datetime } from '@/shared/domain/dates/datetime'
 import { Id } from '@/shared/domain/interface/id'
+import { Money } from '@/shared/domain/money/Money'
 
 // TODO: el atributo payerId lo sustituyes por payer, recives un Payer, y no un Id
 
@@ -47,5 +48,9 @@ export class Expense implements IExpense {
 
   public getPaymentDateFormatted(): string {
     return Datetime.getDateFormatted(this.paymentDate)
+  }
+
+  public getAmountFormatted(): string {
+    return Money.getMoneyFormatted(this.amount)
   }
 }
