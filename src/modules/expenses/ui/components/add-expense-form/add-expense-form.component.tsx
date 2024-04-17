@@ -25,6 +25,7 @@ export const AddExpenseForm = () => {
   })
   const [isDisabled, setIsDisabled] = useState<boolean>(true)
 
+  // TODO: migrar a gestor de formulario
   const resetForm = () => setExpense(InitialExpense)
   const isValidForm = () => {
     const formErrors: ExpenseFormErrors = {
@@ -38,10 +39,15 @@ export const AddExpenseForm = () => {
     return Object.values(formErrors).every((error) => !error)
   }
 
-  const handleOnChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleOnChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+    isNumber: boolean = false
+  ) => {
     setErrors({ ...errors, [e.target.id]: '' })
     setIsDisabled(false)
-    setExpense({ ...expense, [e.target.id]: e.target.value })
+    isNumber
+      ? setExpense({ ...expense, [e.target.id]: parseFloat(e.target.value) })
+      : setExpense({ ...expense, [e.target.id]: e.target.value })
   }
 
   const handleOnSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -100,7 +106,7 @@ export const AddExpenseForm = () => {
             type="number"
             id="amount"
             value={expense.amount}
-            onChange={handleOnChange}
+            onChange={(e) => handleOnChange(e, true)}
             data-testid="amount-input"
           />
           {errors.errorAmountInput && <span className="error">{errors.errorAmountInput}</span>}
