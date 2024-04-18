@@ -1,5 +1,4 @@
 import { AddExpenseCommand } from '../../application/add-expense.command'
-import { GetExpensePayerQuery } from '../../application/get-expense-payer.query'
 import { GetExpensesQuery } from '../../application/get-expenses.query'
 import { GetPayersQuery } from '../../application/get-payers.query'
 import { LocalStorageExpenseRepository } from '../../infrastructure/local-storage-expense.repository'
@@ -19,7 +18,7 @@ export class ExpenseLocator {
     return new GetPayersQuery(this.localStorageExpenseRepository)
   }
 
-  static getExpensePayer() {
-    return new GetExpensePayerQuery(this.localStorageExpenseRepository)
-  }
+  // static getExpensePayer() {
+  //   return new GetExpensePayerQuery(this.localStorageExpenseRepository)
+  // }
 }

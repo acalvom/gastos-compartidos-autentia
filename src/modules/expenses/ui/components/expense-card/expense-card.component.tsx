@@ -1,7 +1,6 @@
 import money from '@/assets/money.png'
 import ticket from '@/assets/ticket.png'
 import { Expense } from '@/modules/expenses/domain/expense'
-import { useExpensePayer } from '../../controllers/use-expense-payer.hook'
 import './expense-card.styles.css'
 
 interface ExpenseCardProps {
@@ -12,7 +11,7 @@ interface ExpenseCardProps {
 export const ExpenseCard = ({ expense, handleDelete }: ExpenseCardProps) => {
   // INFO: al destructurar objetos pierdes el contexto del this y por lo tanto dejas de poder utilizar los métodos de la clase Expense
   // TODO: overkilling llamar al useExpensePayer desde aquí. Cambia la entidad Expense para que reciba un Payer en lugar de un payer Id
-  const { payer } = useExpensePayer(expense.payerId)
+  // const { payer } = useExpensePayer(expense.payerId)
 
   return (
     <div className="card-container">
@@ -27,7 +26,7 @@ export const ExpenseCard = ({ expense, handleDelete }: ExpenseCardProps) => {
       </div>
       <div className="card-body">
         <div className="card-field card-subtitle" data-testid="card-payer">
-          {payer.fullName}
+          {expense.payer.fullName}
         </div>
         <div className="card-field" data-testid="card-amount">
           {expense.getAmountFormatted()}

@@ -1,12 +1,11 @@
 import { Datetime } from '@/shared/domain/dates/datetime'
 import { Id } from '@/shared/domain/interface/id'
-import { Money } from '@/shared/domain/money/Money'
-
-// TODO: el atributo payerId lo sustituyes por payer, recives un Payer, y no un Id
+import { Money } from '@/shared/domain/money/money'
+import { Payer } from './payer'
 
 interface IExpense {
   id: Id
-  payerId: Id
+  payer: Payer
   description: string
   amount: number
   paymentDate: Date
@@ -14,7 +13,7 @@ interface IExpense {
 
 export interface IExpensePrimitives {
   id: Id
-  payerId: Id
+  payer: Payer
   description: string
   amount: number
   paymentDate: string
@@ -22,14 +21,14 @@ export interface IExpensePrimitives {
 
 export class Expense implements IExpense {
   id: Id
-  payerId: Id
+  payer: Payer
   description: string
   amount: number
   paymentDate: Date
 
   constructor(value: IExpense) {
     this.id = value.id
-    this.payerId = value.payerId
+    this.payer = value.payer
     this.description = value.description
     this.amount = value.amount
     this.paymentDate = value.paymentDate
