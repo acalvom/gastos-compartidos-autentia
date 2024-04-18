@@ -1,43 +1,40 @@
 import money from '@/assets/money.png'
 import ticket from '@/assets/ticket.png'
-import { useLocalStorage } from '@/hooks/useLocalStorage'
-import { StoredExpense, StoredUser, User } from '@/models'
-import { dateFormatter } from '@/utils'
-import './ExpenseCard.css'
+import { Expense } from '@/modules/expenses/domain/expense'
+import './expense-card.styles.css'
 
 interface ExpenseCardProps {
-  expense: StoredExpense
+  expense: Expense
   handleDelete: () => void
 }
 
 export const ExpenseCard = ({ expense, handleDelete }: ExpenseCardProps) => {
-  const { payer, description, amount, paymentDate } = expense
-  const [storedUsers] = useLocalStorage<StoredUser[]>('amigos', [])
-  const { firstName, lastName } = storedUsers.find(({ id }) => id === payer) || ({} as User)
+  // INFO: al destructurar objetos pierdes el contexto del this y por lo tanto dejas de poder utilizar los métodos de la clase Expense
+  // TODO: overkilling llamar al useExpensePayer desde aquí. Cambia la entidad Expense para que reciba un Payer en lugar de un payer Id
+  // const { payer } = useExpensePayer(expense.payerId)
 
   return (
     <div className="card-container">
       <div className="card-header">
         <div className="card-field card-title" data-testid="card-title">
           <img src={ticket} alt="Person" width="36" height="36" />
-          {description}
+          {expense.description}
         </div>
         <button className="card-button" data-testid="card-button" onClick={handleDelete}>
           ❌
         </button>
       </div>
       <div className="card-body">
-        <div
-          className="card-field card-subtitle"
-          data-testid="card-payer"
-        >{`${firstName} ${lastName}`}</div>
+        <div className="card-field card-subtitle" data-testid="card-payer">
+          {expense.payer.fullName}
+        </div>
         <div className="card-field" data-testid="card-amount">
-          {`€${amount}`}
+          {expense.getAmountFormatted()}
           <img src={money} alt="Person" width="32" height="32" />
         </div>
       </div>
       <div className="card-field card-footer" data-testid="card-date">
-        {dateFormatter(paymentDate)}
+        {expense.getPaymentDateFormatted()}
       </div>
     </div>
   )

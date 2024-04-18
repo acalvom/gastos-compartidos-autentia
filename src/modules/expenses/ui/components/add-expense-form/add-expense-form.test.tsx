@@ -1,23 +1,10 @@
 import { render, screen } from '@testing-library/react'
 import { expect, test } from 'vitest'
-
-import { AddExpenseForm, AddExpenseFormProps } from './AddExpenseForm'
-import { ExpenseForm } from '@/constants'
+import { AddExpenseForm } from './add-expense-form.component'
+import { ExpenseForm } from './add-expense.constants'
 
 test('renders AddUserForm component', async () => {
-  const initalForm: AddExpenseFormProps = {
-    storedUsers: [],
-    storedExpenses: [],
-    setStoredExpenses: () => {},
-  }
-
-  render(
-    <AddExpenseForm
-      storedUsers={initalForm.storedUsers}
-      storedExpenses={initalForm.storedExpenses}
-      setStoredExpenses={initalForm.setStoredExpenses}
-    />
-  )
+  render(<AddExpenseForm />)
 
   expect(screen.getByTestId('add-expense-form')).toBeInTheDocument()
   const descriptionInput = screen.getByTestId('description-input')

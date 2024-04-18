@@ -1,48 +1,60 @@
-import { ExpenseForm, initialExpense, initialExpenseError } from '@/constants'
-import { Expense, ExpenseFormErrors, StoredExpense, StoredUser } from '@/models'
+import { NewExpense } from '@/modules/expenses/domain/new-expense'
 import { Common } from '@/shared/ui/texts/common-texts'
 import { ChangeEvent, FormEvent, useState } from 'react'
-import './AddExpenseForm.css'
+import { useAddExpense } from '../../controllers/use-add-expense.hook'
+import { usePayerList } from '../../controllers/use-payer-list.hook'
+import './add-expense-form.styles.css'
+import { ExpenseForm, InitialExpense } from './add-expense.constants'
 
-export interface AddExpenseFormProps {
-  storedUsers: StoredUser[]
-  storedExpenses: StoredExpense[]
-  setStoredExpenses: (expenses: StoredExpense[]) => void
+interface ExpenseFormErrors {
+  errorPayerInput: string
+  errorAmountInput: string
+  errorDescriptionInput: string
+  errorPaymentDateInput: string
 }
 
-export const AddExpenseForm = ({
-  storedUsers,
-  storedExpenses,
-  setStoredExpenses,
-}: AddExpenseFormProps) => {
-  const [expense, setExpense] = useState<Expense>(initialExpense)
-  const [errors, setErrors] = useState<ExpenseFormErrors>(initialExpenseError)
+export const AddExpenseForm = () => {
+  const { addExpense } = useAddExpense()
+  const { payers } = usePayerList()
+  const [expense, setExpense] = useState<NewExpense>(InitialExpense)
+  const [errors, setErrors] = useState<ExpenseFormErrors>({
+    errorPayerInput: '',
+    errorAmountInput: '',
+    errorDescriptionInput: '',
+    errorPaymentDateInput: '',
+  })
   const [isDisabled, setIsDisabled] = useState<boolean>(true)
 
-  const resetForm = () => setExpense(initialExpense)
+  // TODO: migrar a gestor de formulario
+  const resetForm = () => setExpense(InitialExpense)
   const isValidForm = () => {
     const formErrors: ExpenseFormErrors = {
-      payer: !expense.payer ? Common.FieldRequired : '',
-      amount: !expense.amount ? Common.FieldRequired : '',
-      description: !expense.description ? Common.FieldRequired : '',
-      paymentDate: !expense.paymentDate ? Common.FieldRequired : '',
+      errorPayerInput: !expense.payerId ? Common.FieldRequired : '',
+      errorAmountInput: !expense.amount ? Common.FieldRequired : '',
+      errorDescriptionInput: !expense.description ? Common.FieldRequired : '',
+      errorPaymentDateInput: !expense.paymentDate ? Common.FieldRequired : '',
     }
 
     setErrors(formErrors)
     return Object.values(formErrors).every((error) => !error)
   }
 
-  const handleOnChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleOnChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+    isNumber: boolean = false
+  ) => {
     setErrors({ ...errors, [e.target.id]: '' })
     setIsDisabled(false)
-    setExpense({ ...expense, [e.target.id]: e.target.value })
+    isNumber
+      ? setExpense({ ...expense, [e.target.id]: parseFloat(e.target.value) })
+      : setExpense({ ...expense, [e.target.id]: e.target.value })
   }
 
   const handleOnSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (!isValidForm()) return
 
-    setStoredExpenses([...storedExpenses, { ...expense, id: expense.payer + expense.paymentDate }])
+    addExpense(expense)
     resetForm()
   }
 
@@ -53,21 +65,21 @@ export const AddExpenseForm = ({
           {ExpenseForm.Payer}
           <select
             className="input input-expense"
-            value={expense.payer}
+            value={expense.payerId}
             onChange={handleOnChange}
-            id="payer"
+            id="payerId"
             data-testid="payer-input"
           >
             <option value="" disabled hidden>
               {ExpenseForm.SelectPayer}
             </option>
-            {storedUsers.map(({ id, firstName, lastName }) => (
+            {payers.map(({ id, fullName }) => (
               <option key={id} value={id}>
-                {firstName} {lastName}
+                {fullName}
               </option>
             ))}
           </select>
-          {errors.payer && <span className="error">{errors.payer}</span>}
+          {errors.errorPayerInput && <span className="error">{errors.errorPayerInput}</span>}
         </label>
 
         <label className="input-label">
@@ -80,7 +92,9 @@ export const AddExpenseForm = ({
             onChange={handleOnChange}
             data-testid="description-input"
           />
-          {errors.description && <span className="error">{errors.description}</span>}
+          {errors.errorDescriptionInput && (
+            <span className="error">{errors.errorDescriptionInput}</span>
+          )}
         </label>
       </div>
 
@@ -92,10 +106,10 @@ export const AddExpenseForm = ({
             type="number"
             id="amount"
             value={expense.amount}
-            onChange={handleOnChange}
+            onChange={(e) => handleOnChange(e, true)}
             data-testid="amount-input"
           />
-          {errors.amount && <span className="error">{errors.amount}</span>}
+          {errors.errorAmountInput && <span className="error">{errors.errorAmountInput}</span>}
         </label>
 
         <label className="input-label">
@@ -109,7 +123,9 @@ export const AddExpenseForm = ({
             onChange={handleOnChange}
             data-testid="payment-date-input"
           />
-          {errors.paymentDate && <span className="error">{errors.paymentDate}</span>}
+          {errors.errorPaymentDateInput && (
+            <span className="error">{errors.errorPaymentDateInput}</span>
+          )}
         </label>
       </div>
 
