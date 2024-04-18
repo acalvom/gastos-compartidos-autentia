@@ -17,8 +17,4 @@ export class ExpenseLocator {
   static getPayersQuery() {
     return new GetPayersQuery(this.localStorageExpenseRepository)
   }
-
-  // static getExpensePayer() {
-  //   return new GetExpensePayerQuery(this.localStorageExpenseRepository)
-  // }
 }

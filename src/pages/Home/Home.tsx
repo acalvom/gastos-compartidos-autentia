@@ -9,8 +9,6 @@ import { UserList } from '@/modules/users/ui/components/user-list/user-list.comp
 import './Home.css'
 
 export const Home = () => {
-  // const [storedExpenses, setStoredExpenses] = useLocalStorage<StoredExpense[]>('gastos', [])
-
   // const sortedExpenses = sortExpenses(storedExpenses)
   // const balance = calculateBalance(storedExpenses, storedUsers)
   const balance: Balances = {}
