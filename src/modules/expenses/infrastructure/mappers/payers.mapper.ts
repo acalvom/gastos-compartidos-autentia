@@ -1,18 +1,6 @@
-import { Payer } from '../../domain/payer'
-
-interface ILocalStorageUser {
-  id: string
-  firstName: string
-  lastName: string
-}
+import { IPayerPrimitives, Payer } from '../../domain/payer'
 
 export function payersFromLocalStorage(usersString: string | null): Payer[] {
-  if (!usersString) return []
-
-  const users: ILocalStorageUser[] = JSON.parse(usersString)
-
-  return users.map((user) => ({
-    id: user.id,
-    fullName: `${user.firstName} ${user.lastName}`,
-  }))
+  const jsonPayer: IPayerPrimitives[] = usersString ? JSON.parse(usersString) : []
+  return jsonPayer.map(Payer.fromJson)
 }
