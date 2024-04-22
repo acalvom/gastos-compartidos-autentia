@@ -12,7 +12,13 @@ interface IExpensePrimitives {
   paymentDate: string
 }
 
-type UserExpenses = Record<Id, number[]>
+type UserExpenses = Record<Id, number>
+
+interface GlobalBalance {
+  globalDebt: number
+  totalUsers: number
+  userExpenses: UserExpenses
+}
 export class LocalStorageUserBalanceRepository implements UserBalanceRepository {
   /**
   // INFO: tengo que simular un array de UserBalances para ello, necesito implementer la siguiente lógica (que vendría dada del BE)
@@ -40,11 +46,11 @@ export class LocalStorageUserBalanceRepository implements UserBalanceRepository 
     const tt = jsonExpenses.reduce((acc: UserExpenses, jsonExpense: IExpensePrimitives) => {
       if (!acc[jsonExpense.payer.id]) {
         // No existen gastos asociados a ese usuario aun. Añadir la key y el gasto
+        return { ...acc, [jsonExpense.payer.id]: jsonExpense.amount }
       } else {
         // Ya existe algún gasto asociado a ese usuario. Añadir el gasto a los que ya existen
+        return { ...acc, [jsonExpense.payer.id]: acc[jsonExpense.payer.id] + jsonExpense.amount }
       }
-
-      return acc
     }, {})
 
     return tt
