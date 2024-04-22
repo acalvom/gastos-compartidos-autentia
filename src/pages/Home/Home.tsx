@@ -1,11 +1,11 @@
 import { NavigationLink } from '@/components/NavigationLink/NavigationLink'
-import { AddItem } from '@/constants'
 import { Layout } from '@/layout/Layout'
-
 import { ExpenseList } from '@/modules/expenses/ui/components/expense-list/expense-list.component'
 import { UserBalanceList } from '@/modules/user-balances/ui/components/user-balance-list/user-balance-list.component'
 import { UserList } from '@/modules/users/ui/components/user-list/user-list.component'
 import './Home.css'
+
+const AddItem = '➕ Añadir Amigo / Gasto'
 
 export const Home = () => {
   // TODO: clean code
