@@ -1,44 +1,46 @@
 import { Id } from '@/shared/domain/interface/id'
 
 import { User } from '../domain/user'
-import { UserBalance } from '../domain/user-balance'
+import { IUserExpensePrimitives, UserBalance } from '../domain/user-balance'
 import { UserBalanceRepository } from '../domain/user-balance.repository'
-import { usersTotalExpenseToUserBalanceMapper } from './mappers/user-balance.mapper'
+import { expenseToUserExpenseMapper, userBalancesMapper } from './mappers/user-balance.mapper'
 
-interface IExpensePrimitives {
-  id: Id
-  payer: User
-  description: string
-  amount: number
-  paymentDate: string
-}
-
-export type UserTotalExpense = {
+// ASKME: Esto no es demsiado iterativo?
+type UserTotalExpense = {
   user: User
   totalExpense: number
 }
-export type UsersTotalExpense = Record<Id, UserTotalExpense>
+
+export type IUsersTotalExpense = Record<Id, UserTotalExpense>
 
 export class LocalStorageUserBalanceRepository implements UserBalanceRepository {
-  private getExpensesFromLocalStorage(): IExpensePrimitives[] {
+  private getUserExpensesFromLocalStorage(): IUserExpensePrimitives[] {
     const expensesString = localStorage.getItem('expenses')
-    return expensesString ? JSON.parse(expensesString) : []
+    return expenseToUserExpenseMapper(expensesString)
   }
 
-  private getUsersTotalExpenseFromLocalStorage(): UsersTotalExpense {
-    const jsonExpenses = this.getExpensesFromLocalStorage()
-    return jsonExpenses.reduce((acc: UsersTotalExpense, jsonExpense: IExpensePrimitives) => {
-      if (!acc[jsonExpense.payer.id]) {
+  private getGlobalExpenseFromLocalStorage(): number {
+    const userExpenses = this.getUserExpensesFromLocalStorage()
+    return userExpenses.reduce(
+      (accExpenseAmount, currExpense) => accExpenseAmount + currExpense.amount,
+      0
+    )
+  }
+
+  private getUsersTotalExpenseFromLocalStorage(): IUsersTotalExpense {
+    const userExpenses = this.getUserExpensesFromLocalStorage()
+    return userExpenses.reduce((acc: IUsersTotalExpense, userExpense: IUserExpensePrimitives) => {
+      if (!acc[userExpense.user.id]) {
         return {
           ...acc,
-          [jsonExpense.payer.id]: { user: jsonExpense.payer, totalExpense: jsonExpense.amount },
+          [userExpense.user.id]: { user: userExpense.user, totalExpense: userExpense.amount },
         }
       } else {
         return {
           ...acc,
-          [jsonExpense.payer.id]: {
-            user: acc[jsonExpense.payer.id].user,
-            totalExpense: acc[jsonExpense.payer.id].totalExpense + jsonExpense.amount,
+          [userExpense.user.id]: {
+            user: acc[userExpense.user.id].user,
+            totalExpense: acc[userExpense.user.id].totalExpense + userExpense.amount,
           },
         }
       }
@@ -47,6 +49,7 @@ export class LocalStorageUserBalanceRepository implements UserBalanceRepository 
 
   async getAll(): Promise<UserBalance[]> {
     const usersTotalExpense = this.getUsersTotalExpenseFromLocalStorage()
-    return usersTotalExpenseToUserBalanceMapper(usersTotalExpense)
+    const globalExpense = this.getGlobalExpenseFromLocalStorage()
+    return userBalancesMapper(usersTotalExpense, globalExpense)
   }
 }

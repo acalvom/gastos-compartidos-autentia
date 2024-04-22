@@ -1,7 +1,20 @@
 import { Money } from '@/shared/domain/money/money'
 import { User } from './user'
 
-export interface IUserBalance {
+// ASKME: sobraría IUserExpensePrimitives , debería ir quizás en el repository?
+export interface IUserExpensePrimitives {
+  user: User
+  amount: number
+}
+
+export interface IUserBalancePrimitives {
+  user: User
+  totalUserExpense: number
+  totalUsers: number
+  globalExpense: number
+}
+
+interface IUserBalance {
   user: User
   debtAmount: number
 }
@@ -15,8 +28,11 @@ export class UserBalance implements IUserBalance {
     this.debtAmount = value.debtAmount
   }
 
-  static fromJson(value: IUserBalance): UserBalance {
-    return new UserBalance({ ...value })
+  static fromJson(value: IUserBalancePrimitives): UserBalance {
+    return new UserBalance({
+      ...value,
+      debtAmount: value.totalUserExpense - value.globalExpense / value.totalUsers,
+    })
   }
 
   public getDebtFormatted(): string {

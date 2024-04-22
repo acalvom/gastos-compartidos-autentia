@@ -1,20 +1,38 @@
-import { UserBalance } from '../../domain/user-balance'
-import { UserTotalExpense, UsersTotalExpense } from '../local-storage-user-balance.repository'
+import { Id } from '@/shared/domain/interface/id'
+import { User } from '../../domain/user'
+import { IUserExpensePrimitives, UserBalance } from '../../domain/user-balance'
+import { IUsersTotalExpense } from '../local-storage-user-balance.repository'
 
-export function usersTotalExpenseToUserBalanceMapper(
-  usersTotalExpense: UsersTotalExpense
+// ASKME: es correcto el uso de IExpensePrimitives aquí?
+interface IExpensePrimitives {
+  id: Id
+  payer: User
+  description: string
+  amount: number
+  paymentDate: string
+}
+
+export function expenseToUserExpenseMapper(
+  expensesString: string | null
+): IUserExpensePrimitives[] {
+  const jsonExpenses: IExpensePrimitives[] = expensesString ? JSON.parse(expensesString) : []
+  return jsonExpenses.map((expense: IExpensePrimitives) => ({
+    user: expense.payer,
+    amount: expense.amount,
+  }))
+}
+
+export function userBalancesMapper(
+  usersTotalExpense: IUsersTotalExpense,
+  globalExpense: number
 ): UserBalance[] {
   const usersTotalExpenseArray = Object.values(usersTotalExpense)
-  const globalDebt = usersTotalExpenseArray.reduce(
-    (accDebt, currExpense) => accDebt + currExpense.totalExpense,
-    0
-  )
-  const userDebt = globalDebt / usersTotalExpenseArray.length
-
-  return usersTotalExpenseArray.map((item: UserTotalExpense) =>
+  return usersTotalExpenseArray.map((item) =>
     UserBalance.fromJson({
       user: item.user,
-      debtAmount: item.totalExpense - userDebt,
+      totalUserExpense: item.totalExpense,
+      totalUsers: usersTotalExpenseArray.length,
+      globalExpense,
     })
   )
 }
