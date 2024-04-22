@@ -1,22 +1,18 @@
-import { BalanceEntry } from '@/components/BalanceEntry/BalanceEntry'
 import { useUserBalanceList } from '../../controllers/use-user-balance-list.hook'
-
-const BalanceSummary = {
-  title: '📈 Balance del grupo',
-  paid: 'ha pagado',
-  debt: 'y su balance es',
-}
+import { UserBalanceSummary } from '../user-balance/user-balance.component'
+import './user-balance-list.styles.css'
 
 export const UserBalanceList = () => {
   const { userBalances } = useUserBalanceList()
-  // TODO: rename BalanceEntry & move to this directory
 
   return (
-    <div className="home-balance" data-testid="balance">
-      <h2 className="home-title">{BalanceSummary.title}</h2>
-      {userBalances.map((userBalance) => (
-        <BalanceEntry key={userBalance.user.id} balance={userBalance} />
-      ))}
+    <div>
+      <h2 className="home-title">📈 Balance del grupo</h2>
+      <div className="home-balance" data-testid="balance">
+        {userBalances.map((userBalance) => (
+          <UserBalanceSummary key={userBalance.user.id} userBalance={userBalance} />
+        ))}
+      </div>
     </div>
   )
 }
