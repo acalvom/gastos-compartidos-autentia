@@ -8,6 +8,7 @@ import { UserList } from '@/modules/users/ui/components/user-list/user-list.comp
 import './Home.css'
 
 export const Home = () => {
+  // TODO: clean code
   // const sortedExpenses = sortExpenses(storedExpenses)
   // const balance = calculateBalance(storedExpenses, storedUsers)
   // const balance: Balances = {}

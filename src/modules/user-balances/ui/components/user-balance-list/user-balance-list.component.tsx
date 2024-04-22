@@ -9,6 +9,7 @@ const BalanceSummary = {
 
 export const UserBalanceList = () => {
   const { userBalances } = useUserBalanceList()
+  // TODO: rename BalanceEntry & move to this directory
 
   return (
     <div className="home-balance" data-testid="balance">
