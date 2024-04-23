@@ -1,4 +1,4 @@
-import './Main.css'
+import './main.styles.css'
 
 type MainProps = {
   children: JSX.Element | JSX.Element[]
@@ -7,4 +7,3 @@ type MainProps = {
 export const Main = ({ children }: MainProps) => {
   return <main className="app-main">{children}</main>
 }
-

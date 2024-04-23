@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import './NavigationLink.css'
+import './navigation-link.styles.css'
 
 interface NavigationLinkProps {
   children: React.ReactNode

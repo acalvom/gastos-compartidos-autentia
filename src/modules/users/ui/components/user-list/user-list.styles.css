@@ -2,12 +2,13 @@
   display: flex;
   flex-direction: column;
   background-color: white;
-  padding: 20px;
   border-radius: 10px;
   margin: 20px auto;
   width: max-content;
-  font-weight: 400;
-  color: dimgray;
+  font-weight: 600;
+  color: rgb(36, 36, 36);
+  list-style: emoji-collection;
+  padding: 1rem 2.5rem;
   li {
     margin: 0 3px 0 0;
   }
