@@ -18,6 +18,13 @@ body {
   font-weight: 400;
 }
 
+.title {
+  margin-top: 0;
+  color: #003049;
+  display: flex;
+  justify-content: center;
+}
+
 .input {
   width: 200px;
   padding: 12px 20px;

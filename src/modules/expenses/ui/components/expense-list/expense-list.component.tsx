@@ -11,7 +11,7 @@ export const ExpenseList = () => {
 
   return (
     <div>
-      <h2 className="home-title">{ExpenseTitle}</h2>
+      <h2 className="title">{ExpenseTitle}</h2>
       <div className="expense-list" data-testid="expenses-list">
         {expenses.map((expense) => (
           <ExpenseCard

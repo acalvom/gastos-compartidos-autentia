@@ -4,8 +4,8 @@ import './user-list.styles.css'
 export const UserList = () => {
   const { users } = useUserList()
   return (
-    <div className="home-users">
-      <h2 className="home-title">👯 Usuarios</h2>
+    <>
+      <h2 className="title">👯 Usuarios</h2>
       <ul className="user-list">
         {users.map(({ firstName, lastName, id }) => (
           <li key={id}>
@@ -13,6 +13,6 @@ export const UserList = () => {
           </li>
         ))}
       </ul>
-    </div>
+    </>
   )
 }
