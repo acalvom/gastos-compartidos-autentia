@@ -41,4 +41,8 @@ export class LocalStorageExpenseRepository implements ExpenseRepository {
     const usersString = localStorage.getItem('users')
     return payersFromLocalStorage(usersString)
   }
+
+  async deleteExpense(expenseId: string): Promise<void> {
+    console.log('🎨 ☞ LocalStorageExpenseRepository ☞ deleteExpense ☞ expenseId:', expenseId)
+  }
 }
