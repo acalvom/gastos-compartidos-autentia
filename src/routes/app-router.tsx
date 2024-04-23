@@ -1,5 +1,5 @@
-import { CreateExpense } from '@/pages/create-expense/create-expense.component'
-import { CreateUser } from '@/pages/create-user/create-user.component'
+import { CreateExpense } from '@/pages/create/create-expense.component'
+import { CreateUser } from '@/pages/create/create-user.component'
 import { Home } from '@/pages/home/home.component'
 import { NotFound } from '@/pages/not-found/not-found.component'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
