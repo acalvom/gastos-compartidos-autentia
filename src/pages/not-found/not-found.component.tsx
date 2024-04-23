@@ -1,7 +1,6 @@
-import { NavigationLink } from '@/shared/ui/components/navigation-link/navigation-link.component'
-
 import { Layout } from '@/layout/base/layout-base.component'
-import './NotFound.css'
+import { NavigationLink } from '@/shared/ui/components/navigation-link/navigation-link.component'
+import './not-found.styles.css'
 
 const NotFoundPage = {
   Title: '¡Ups!',

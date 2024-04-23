@@ -1,7 +1,7 @@
-import { CreateExpense } from '@/pages/CreateExpense/CreateExpense'
-import { CreateUser } from '@/pages/CreateUser/CreateUser'
-import { Home } from '@/pages/Home/Home'
-import { NotFound } from '@/pages/NotFound/NotFound'
+import { CreateExpense } from '@/pages/create-expense/create-expense.component'
+import { CreateUser } from '@/pages/create-user/create-user.component'
+import { Home } from '@/pages/home/home.component'
+import { NotFound } from '@/pages/not-found/not-found.component'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 const routes = [
