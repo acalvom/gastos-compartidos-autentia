@@ -24,15 +24,15 @@ body {
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;
   border: none;
-  border-bottom: 2px solid #555;
+  border-bottom: 2px solid #003566;
   box-sizing: border-box;
   background-color: #f8f9fa;
   transition: width 0.4s ease-in-out;
-  color: #555;
+  color: #003566;
 }
 
 .input:focus {
-  border: 3px solid #555;
+  border: 3px solid #003566;
   width: 300px;
 }
 
@@ -41,32 +41,32 @@ body {
 }
 
 .error {
-  color: #c56a69;
+  color: #780000;
   font-size: 0.8rem;
   margin-top: 4px;
 }
 
 .button {
-  background-color: #c56a69;
+  background-color: #ffc300;
   border: none;
-  color: #f8f9fa;
+  color: #003566;
   padding: 12px 20px;
   text-align: center;
   text-decoration: none;
   margin: 4px 0;
-  transition-duration: 0.4s;
+  transition-duration: 0.3s;
   cursor: pointer;
   border-radius: 5px;
 }
 .button:hover {
-  background-color: #fdc9bc;
-  border: 2px solid #c56a69;
-  color: #b55553;
+  background-color: #ffd60a;
+  border: 2px solid #003566;
+  color: #001d3d;
 }
 .button:disabled {
-  background-color: #bdbdbd;
-  border: 1px solid #555;
-  color: #444444;
+  background-color: #edede9;
+  border: 1px solid #003566;
+  color: #003566;
   cursor: not-allowed;
 }
 
