@@ -1,4 +1,5 @@
-import { Create } from '@/pages/Create/Create'
+import { CreateExpense } from '@/pages/CreateExpense/CreateExpense'
+import { CreateUser } from '@/pages/CreateUser/CreateUser'
 import { Home } from '@/pages/Home/Home'
 import { NotFound } from '@/pages/NotFound/NotFound'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
@@ -10,9 +11,14 @@ const routes = [
     element: <Home />,
   },
   {
-    key: 'create',
-    path: '/create',
-    element: <Create />,
+    key: 'create-user',
+    path: '/create-user',
+    element: <CreateUser />,
+  },
+  {
+    key: 'create-expense',
+    path: '/create-expense',
+    element: <CreateExpense />,
   },
   {
     key: 'not-found',
