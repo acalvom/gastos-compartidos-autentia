@@ -1,11 +1,8 @@
-import { NavigationLink } from '@/components/NavigationLink/NavigationLink'
-import { Layout } from '@/layout/Layout'
+import { Layout } from '@/layout/base/layout-base.component'
 import { ExpenseList } from '@/modules/expenses/ui/components/expense-list/expense-list.component'
 import { UserBalanceList } from '@/modules/user-balances/ui/components/user-balance-list/user-balance-list.component'
 import { UserList } from '@/modules/users/ui/components/user-list/user-list.component'
 import './Home.css'
-
-const AddItem = '➕ Añadir Amigo / Gasto'
 
 export const Home = () => {
   // TODO: clean code
@@ -23,10 +20,6 @@ export const Home = () => {
 
   return (
     <Layout>
-      <NavigationLink link="/create" testId="add-home-button">
-        {AddItem}
-      </NavigationLink>
-
       <UserBalanceList />
       <UserList />
       <ExpenseList />

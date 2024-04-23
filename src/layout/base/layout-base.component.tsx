@@ -1,7 +1,7 @@
-import { Header } from './Header/Header'
-import { Main } from './Main/Main'
-import { Footer } from './Footer/Footer'
-import './Layout.css'
+import { Footer } from './footer/footer.component'
+import { Header } from './header/header.component'
+import './layout-base.styles.css'
+import { Main } from './main/main.component'
 
 type LayoutProps = {
   children: JSX.Element | JSX.Element[]

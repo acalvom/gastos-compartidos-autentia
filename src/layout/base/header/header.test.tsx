@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import { expect, test } from 'vitest'
-import { Header } from './Header'
+import { Header } from './header.component'
 
 test('renders Header component', () => {
   render(<Header />)
