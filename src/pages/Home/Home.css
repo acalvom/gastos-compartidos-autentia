@@ -4,20 +4,3 @@
   display: flex;
   justify-content: center;
 }
-
-.home-balance {
-  display: flex;
-  flex-direction: column;
-  background-color: #f8f9fa;
-  padding: 2rem;
-  border-radius: 10px;
-  width: max-content;
-  margin: 10px auto 15px;
-}
-
-@media only screen and (max-width: 600px) {
-  .home-balance {
-    width: 100%;
-    word-break: break-all;
-  }
-}

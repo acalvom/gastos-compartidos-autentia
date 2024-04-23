@@ -1,7 +1,13 @@
 import { NavigationLink } from '@/components/NavigationLink/NavigationLink'
-import { NotFoundPage } from '@/constants'
+
 import { Layout } from '@/layout/Layout'
 import './NotFound.css'
+
+const NotFoundPage = {
+  Title: '¡Ups!',
+  Subtitle: 'Esta página no existe.',
+  BackButton: '🥲 Llévame a casa',
+}
 
 export const NotFound = () => {
   return (

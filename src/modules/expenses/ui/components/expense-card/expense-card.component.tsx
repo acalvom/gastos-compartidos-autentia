@@ -10,8 +10,6 @@ interface ExpenseCardProps {
 
 export const ExpenseCard = ({ expense, handleDelete }: ExpenseCardProps) => {
   // INFO: al destructurar objetos pierdes el contexto del this y por lo tanto dejas de poder utilizar los métodos de la clase Expense
-  // TODO: overkilling llamar al useExpensePayer desde aquí. Cambia la entidad Expense para que reciba un Payer en lugar de un payer Id
-  // const { payer } = useExpensePayer(expense.payerId)
 
   return (
     <div className="card-container">

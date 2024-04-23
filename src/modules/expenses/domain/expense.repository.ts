@@ -6,5 +6,4 @@ export interface ExpenseRepository {
   getAll(): Promise<Expense[]>
   addExpense(newExpense: NewExpense): Promise<void>
   getPayers(): Promise<Payer[]>
-  // getExpensePayer(payerId: Id): Promise<Payer>
 }
