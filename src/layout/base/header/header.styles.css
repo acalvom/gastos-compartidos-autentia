@@ -1,6 +1,6 @@
 .app-header {
-  background-color: #003566;
-  color: white;
+  background-color: var(--dark-grey-color);
+  color: var(--white-color);
   padding: 1rem;
   position: fixed;
   top: 0;

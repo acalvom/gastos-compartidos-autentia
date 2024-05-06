@@ -3,7 +3,7 @@
   font-size: 1rem;
   display: flex;
   flex-direction: column;
-  background-color: #f8f9fa;
+  background-color: var(--light-grey-color);
   padding: 20px;
   border-radius: 10px;
 }
@@ -17,18 +17,14 @@
 
 .card-button {
   display: flex;
-  border-radius: 50%;
-  padding: 3px 5px;
-  border: 2px solid red;
-  height: min-content;
+  border: none;
   cursor: pointer;
 }
-
 
 .card-body {
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid #555;
+  border-bottom: 1px solid var(--dark-grey-color);
   padding-bottom: 5px;
 }
 
@@ -46,14 +42,13 @@
 
 .card-subtitle {
   font-weight: 400;
-  color: dimgray;
+  color: var(--dark-grey-color);
 }
 
 .card-footer {
   justify-content: flex-end;
   padding-top: 5px;
   font-weight: 300;
-  font-style: oblique;
 }
 
 @media only screen and (max-width: 992px) {

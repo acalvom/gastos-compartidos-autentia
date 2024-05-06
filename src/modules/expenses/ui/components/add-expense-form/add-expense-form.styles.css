@@ -4,11 +4,11 @@
   align-items: center;
   padding: 20px 30px;
   gap: 20px;
-  border: 2px solid #555;
+  border: 2px solid var(--dark-color);
   margin: 20px auto;
   width: min-content;
   border-radius: 8px;
-  background-color: #f8f9fa;
+  background-color: var(--light-grey-color);
 }
 
 .input-grid-wrapper {
@@ -19,7 +19,7 @@
 
 .input-label {
   font-size: 0.8rem;
-  color: #555;
+  color: var(--dark-color);
   display: flex;
   flex-direction: column;
   margin-bottom: 5px;
@@ -27,7 +27,7 @@
 }
 
 .input-expense.input {
-  background-color: #55555513;
+  background-color: var(--white-color);
   min-width: 240px;
   width: 100%;
 }

@@ -5,13 +5,13 @@
 }
 
 .notFound-title {
-  color: #003049;
+  color: var(--black-color);
   font-size: 4rem;
   margin-bottom: 1rem;
 }
 
 .notFound-subtitle {
-  color: #003049;
+  color: var(--black-color);
   font-size: 1.2rem;
   font-weight: 300;
 }

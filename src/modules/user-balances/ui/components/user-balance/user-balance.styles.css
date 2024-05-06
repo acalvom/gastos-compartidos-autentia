@@ -11,9 +11,9 @@
 }
 
 .span-balance-positive {
-  color: green;
+  color: var(--teal-color);
 }
 
 .span-balance-negative {
-  color: red;
+  color: var(--red-color);
 }
