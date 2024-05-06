@@ -9,8 +9,6 @@ interface ExpenseCardProps {
 }
 
 export const ExpenseCard = ({ expense, handleDelete }: ExpenseCardProps) => {
-  // INFO: al destructurar objetos pierdes el contexto del this y por lo tanto dejas de poder utilizar los métodos de la clase Expense
-
   return (
     <div className="card-container">
       <div className="card-header">

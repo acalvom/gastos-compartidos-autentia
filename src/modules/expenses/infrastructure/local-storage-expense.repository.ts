@@ -43,6 +43,8 @@ export class LocalStorageExpenseRepository implements ExpenseRepository {
   }
 
   async deleteExpense(expenseId: string): Promise<void> {
-    console.log('🎨 ☞ LocalStorageExpenseRepository ☞ deleteExpense ☞ expenseId:', expenseId)
+    const expenses = this.getExpensesFromLocalStorage()
+    const updatedExpenses = expenses.filter(({ id }) => id !== expenseId)
+    this.saveExpensesToLocalStorage(updatedExpenses)
   }
 }

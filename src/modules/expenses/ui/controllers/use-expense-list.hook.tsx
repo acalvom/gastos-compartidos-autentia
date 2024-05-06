@@ -4,16 +4,18 @@ import { useEffect, useState } from 'react'
 
 export function useExpenseList() {
   const [expenses, setExpenses] = useState<Expense[]>([])
+  const [update, setUpdate] = useState<boolean>(true)
 
   const getExpenses = async () => {
     const getExpensesQuery = ExpenseLocator.getExpensesQuery()
     const expenses = await getExpensesQuery.execute()
     setExpenses(expenses)
+    setUpdate(false)
   }
 
   useEffect(() => {
-    getExpenses()
-  }, [])
+    update && getExpenses()
+  }, [update])
 
-  return { expenses }
+  return { expenses, update: setUpdate }
 }
