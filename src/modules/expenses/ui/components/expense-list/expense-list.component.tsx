@@ -3,8 +3,6 @@ import { useExpenseList } from '../../controllers/use-expense-list.hook'
 import { ExpenseCard } from '../expense-card/expense-card.component'
 import './expense-list.styles.css'
 
-const ExpenseTitle = '🤑 Gastos del grupo'
-
 export const ExpenseList = () => {
   const { expenses, update } = useExpenseList()
   const { deleteExpense } = useDeleteExpense()
@@ -16,7 +14,7 @@ export const ExpenseList = () => {
 
   return (
     <div>
-      <h2 className="title">{ExpenseTitle}</h2>
+      <h2 className="title">Gastos del grupo</h2>
       <div className="expense-list" data-testid="expenses-list">
         {expenses.map((expense) => (
           <ExpenseCard
