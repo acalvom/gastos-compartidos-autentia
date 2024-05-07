@@ -1,6 +1,6 @@
 .app-footer {
-  background-color: #003566;
-  color: white;
+  background-color: var(--dark-grey-color);
+  color: var(--white-color);
   text-align: center;
   padding: 1rem;
   position: fixed;

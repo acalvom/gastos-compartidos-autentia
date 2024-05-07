@@ -1,7 +1,7 @@
-.home-balance {
+.balance {
   display: flex;
   flex-direction: column;
-  background-color: #f8f9fa;
+  background-color: var(--light-grey-color);
   padding: 2rem;
   border-radius: 10px;
   width: max-content;
@@ -9,7 +9,7 @@
 }
 
 @media only screen and (max-width: 600px) {
-  .home-balance {
+  .balance {
     width: 100%;
     word-break: break-all;
   }

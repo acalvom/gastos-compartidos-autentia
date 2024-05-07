@@ -7,8 +7,7 @@ export const UserBalanceList = () => {
 
   return (
     <div>
-      <h2 className="home-title">📈 Balance del grupo</h2>
-      <div className="home-balance" data-testid="balance">
+      <div className="balance" data-testid="balance">
         {userBalances.map((userBalance) => (
           <UserBalanceSummary key={userBalance.user.id} userBalance={userBalance} />
         ))}

@@ -1,6 +1,6 @@
 @counter-style emoji-collection {
   system: fixed;
-  symbols: 🖤 ❤️‍🔥 🩵 🧡 💛 💚 💙 💜 🩷 🩶 🤍 🤎;
+  symbols: 🖤 🩵 🧡 💛 💚 💙 💜 🩷 🩶 🤍 🤎;
   suffix: ' ';
 }
 
@@ -16,6 +16,19 @@ body {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+  --black-color: #222831;
+  --dark-grey-color: #31363f;
+  --light-grey-color: #eeeeee;
+  --teal-color: #76abae;
+  --red-color: #780000;
+  --white-color: #ffffff;
+}
+
+.title {
+  margin-top: 0;
+  color: var(--black-color);
+  display: flex;
+  justify-content: center;
 }
 
 .input {
@@ -24,15 +37,15 @@ body {
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;
   border: none;
-  border-bottom: 2px solid #003566;
+  border-bottom: 2px solid var(--dark-grey-color);
   box-sizing: border-box;
   background-color: #f8f9fa;
   transition: width 0.4s ease-in-out;
-  color: #003566;
+  color: var(--dark-grey-color);
 }
 
 .input:focus {
-  border: 3px solid #003566;
+  border: 3px solid var(--dark-grey-color);
   width: 300px;
 }
 
@@ -41,15 +54,15 @@ body {
 }
 
 .error {
-  color: #780000;
+  color: var(--red-color);
   font-size: 0.8rem;
   margin-top: 4px;
 }
 
 .button {
-  background-color: #ffc300;
+  background-color: var(--teal-color);
   border: none;
-  color: #003566;
+  color: var(--light-grey-color);
   padding: 12px 20px;
   text-align: center;
   text-decoration: none;
@@ -59,14 +72,14 @@ body {
   border-radius: 5px;
 }
 .button:hover {
-  background-color: #ffd60a;
-  border: 2px solid #003566;
-  color: #001d3d;
+  background-color: var(--teal-color);
+  border: 2px solid var(--dark-grey-color);
+  color: var(--black-color);
 }
 .button:disabled {
-  background-color: #edede9;
-  border: 1px solid #003566;
-  color: #003566;
+  background-color: var(--light-grey-color);
+  border: 1px solid var(--dark-grey-color);
+  color: var(--dark-grey-color);
   cursor: not-allowed;
 }
 
