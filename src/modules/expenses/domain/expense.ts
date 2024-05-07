@@ -52,4 +52,8 @@ export class Expense implements IExpense {
   public getAmountFormatted(): string {
     return Money.getMoneyFormatted(this.amount)
   }
+
+  public getPaymentMilliseconds(): number {
+    return Datetime.toMilliseconds(this.paymentDate)
+  }
 }

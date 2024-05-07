@@ -4,8 +4,6 @@ import { UserBalanceModal } from '@/modules/user-balances/ui/components/user-bal
 import { UserList } from '@/modules/users/ui/components/user-list/user-list.component'
 
 export const Home = () => {
-  // const sortedExpenses = sortExpenses(storedExpenses)
-
   return (
     <Layout>
       <UserList />
