@@ -6,7 +6,9 @@ export function expensesFromLocalStorage(expensesString: string | null): Expense
   // INFO: práctica habitual. JSON.parse() devuelve un objeto, no una clase
   // INFO: con Expense.fromJson se convierte el objeto en clase de nuevo
   const jsonExpenses: IExpensePrimitives[] = expensesString ? JSON.parse(expensesString) : []
-  return jsonExpenses.map(Expense.fromJson)
+  return jsonExpenses
+    .map(Expense.fromJson)
+    .sort((a, b) => b.getPaymentMilliseconds() - a.getPaymentMilliseconds())
 }
 
 export function expensesToLocalStorage(expenses: Expense[]): string {

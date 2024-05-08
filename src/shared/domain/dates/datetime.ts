@@ -12,4 +12,8 @@ export class Datetime {
   static getDateFormatted(date: Date): string {
     return dayjs(date).format('DD-MM-YYYY')
   }
+
+  static toMilliseconds(date: Date): number {
+    return dayjs(date).valueOf()
+  }
 }
